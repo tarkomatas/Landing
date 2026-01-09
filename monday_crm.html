@@ -655,6 +655,9 @@
             // Add source URL
             data['source_url'] = window.location.href;
 
+            // Custom Subject for Notification
+            data['subject'] = `🚀 konzultáció jelentkezés: ${data['name']}`;
+
             // Send to Make.com Webhook
             fetch('https://hook.eu1.make.com/gwavowdmun06kl6vih6uhh03mowa64oc', {
                 method: 'POST',
