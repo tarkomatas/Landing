@@ -30,20 +30,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showCookieBanner() {
         const banner = document.createElement("div");
-        banner.className = "fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-[9999] p-4 md:p-6";
+        // Increased prominence: more padding, larger shadow, distinct border, z-index max
+        banner.className = "fixed bottom-0 left-0 right-0 bg-white border-t-4 border-primary shadow-[0_-20px_60px_rgba(0,0,0,0.15)] z-[99999] p-6 md:p-8 animate-fade-up";
         banner.style.display = "block";
         banner.innerHTML = `
-            <div class="max-w-[1240px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-                <p class="text-sm text-gray-600 text-center md:text-left">
-                    Az oldal harmadik féltől származó sütiket (cookie-kat) használ a felhasználói élmény javítása és a mérések érdekében (Meta Pixel). 
-                    A "Elfogadom" gombra kattintva hozzájárulsz ezek használatához. 
-                    <a href="https://digitallwork.hu/adatkezelesi-tajekoztato/digitallwork-hu-kft/" target="_blank" class="underline hover:text-primary">Adatkezelési tájékoztató</a>.
-                </p>
-                <div class="flex gap-3 shrink-0">
-                    <button id="cookie-reject" class="px-4 py-2 rounded-lg border border-gray-200 text-gray-600 font-bold hover:bg-gray-50 text-sm transition-colors">Elutasítom</button>
-                    <button id="cookie-accept" class="px-4 py-2 rounded-lg bg-[#8420cf] text-white font-bold hover:opacity-90 text-sm shadow-md transition-all">Elfogadom</button>
+            <div class="max-w-[1240px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-2 text-center md:text-left">
+                    <p class="text-base md:text-lg text-gray-800 font-medium leading-relaxed">
+                        Az oldal <strong>sütiket (cookie-kat)</strong> használ a legjobb felhasználói élmény és a mérések érdekében.
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        A "Elfogadom" gombbal hozzájárulsz a Meta Pixel használatához. 
+                        <a href="https://digitallwork.hu/adatkezelesi-tajekoztato/digitallwork-hu-kft/" target="_blank" class="underline text-primary hover:text-primary-text font-bold">Adatkezelési tájékoztató</a>.
+                    </p>
+                </div>
+                <div class="flex gap-4 shrink-0 w-full md:w-auto">
+                    <button id="cookie-reject" class="flex-1 md:flex-none px-6 py-3 rounded-xl border-2 border-gray-200 text-gray-600 font-bold hover:bg-gray-50 text-base transition-colors">Elutasítom</button>
+                    <button id="cookie-accept" class="flex-1 md:flex-none px-8 py-3 rounded-xl bg-[#8420cf] text-white font-bold hover:scale-105 active:scale-95 text-base shadow-lg shadow-primary/30 transition-all">Elfogadom</button>
                 </div>
             </div>
+            <style>
+                @keyframes fadeUp {
+                    from { transform: translateY(100%); opacity: 0; }
+                    to { transform: translateY(0); opacity: 1; }
+                }
+                .animate-fade-up { animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+            </style>
         `;
         document.body.appendChild(banner);
 

@@ -139,8 +139,7 @@
                             </h3>
 
                             <form id="leadForm" class="space-y-4">
-                                <input type="hidden" name="_captcha" value="false">
-                                <input type="hidden" name="_subject" value="Új jelentkezés a Monday CRM bevezetésre!">
+                                <!-- Replaced Formsubmit hidden fields with JS logic -->
 
                                 <!-- Step 1 -->
                                 <div class="form-step active" id="step1">
@@ -152,7 +151,8 @@
                                                 placeholder="pl. Kovács János">
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-bold text-gray-700 mb-1">Email cím</label>
+                                            <label class="block text-sm font-bold text-gray-700 mb-1">Céges email
+                                                cím</label>
                                             <input type="email" name="email" required
                                                 class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm"
                                                 placeholder="pl. janos@ceg.hu">
@@ -174,41 +174,84 @@
                                 <!-- Step 2 -->
                                 <div class="form-step" id="step2">
                                     <div class="space-y-4">
+                                        <!-- New Fields -->
+                                        <div>
+                                            <label class="block text-sm font-bold text-gray-700 mb-1">Ismered a
+                                                Monday-t?</label>
+                                            <select name="monday_knowledge" required
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
+                                                <option value="" disabled selected>Válassz...</option>
+                                                <option value="Nem">Nem</option>
+                                                <option value="Igen, de nem használjuk">Igen, de nem használjuk</option>
+                                                <option value="Igen, már használjuk">Igen, már használjuk</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <label class="block text-sm font-bold text-gray-700 mb-1">Mennyire okoz
+                                                gondot az angol nyelvű szoftverek használata?</label>
+                                            <select name="english_level" id="english_level" required
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
+                                                <option value="" disabled selected>Válassz...</option>
+                                                <option value="Nem gond">Nem gond</option>
+                                                <option value="Kisebb nehézséget okoz, de megoldjuk">Kisebb nehézséget
+                                                    okoz, de megoldjuk</option>
+                                                <option value="Kizárólag magyar nyelvű rendszert tudunk használni">
+                                                    Kizárólag magyar nyelvű rendszert tudunk használni</option>
+                                            </select>
+                                        </div>
+
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div>
-                                                <label
-                                                    class="block text-sm font-bold text-gray-700 mb-1">Cégméret</label>
-                                                <select name="company_size"
+                                                <label class="block text-sm font-bold text-gray-700 mb-1">Felhasználók
+                                                    száma</label>
+                                                <select name="user_count" required
                                                     class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
-                                                    <option value="1-5">1-5 fő</option>
-                                                    <option value="5-20">5-20 fő</option>
-                                                    <option value="20+">20+ fő</option>
+                                                    <option value="" disabled selected>Válassz...</option>
+                                                    <option value="1-3 fő">1-3 fő</option>
+                                                    <option value="4-5 fő">4-5 fő</option>
+                                                    <option value="6-10 fő">6-10 fő</option>
+                                                    <option value="10+ fő">10+ fő</option>
                                                 </select>
                                             </div>
                                             <div>
-                                                <label class="block text-sm font-bold text-gray-700 mb-1">Jelenlegi
-                                                    CRM</label>
-                                                <input type="text" name="software"
-                                                    class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm"
-                                                    placeholder="pl. Excel, Pipedrive">
+                                                <label class="block text-sm font-bold text-gray-700 mb-1">Mikorra
+                                                    tervezitek?</label>
+                                                <select name="timeline" required
+                                                    class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
+                                                    <option value="" disabled selected>Válassz...</option>
+                                                    <option value="Azonnal / 1 hónapon belül">Azonnal / 1 hónapon belül
+                                                    </option>
+                                                    <option value="1–3 hónapon belül">1–3 hónapon belül</option>
+                                                    <option value="Későbbre tervezzük">Későbbre tervezzük</option>
+                                                </select>
                                             </div>
                                         </div>
-                                        <div>
-                                            <label class="block text-sm font-bold text-gray-700 mb-1">Mi a legnagyobb
-                                                "fejfájásod"?</label>
-                                            <textarea name="pain_point" rows="2"
-                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm"
-                                                placeholder="Röviden írd le..."></textarea>
+
+                                        <!-- Error Message for Language (Hidden by default) -->
+                                        <div id="langError"
+                                            class="hidden p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm font-bold">
+                                            Sajnáljuk, de mi kizárólag angol nyelvű rendszerek bevezetésével
+                                            foglalkoznuk! Nem tudunk sajnos segíteni.
                                         </div>
 
                                         <div class="flex items-start gap-2 text-xs text-gray-500 my-2">
                                             <input type="checkbox" id="privacy" required
                                                 class="mt-1 rounded text-primary focus:ring-primary">
                                             <label for="privacy">
-                                                Elfogadom az <a
+                                                Az <a
                                                     href="https://digitallwork.hu/adatkezelesi-tajekoztato/digitallwork-hu-kft/"
                                                     target="_blank" class="underline hover:text-primary">Adatkezelési
-                                                    tájékoztatót</a>.
+                                                    Tájékoztatóban</a> foglaltakat elolvastam, megértettem és tudomásul
+                                                vettem.
+                                            </label>
+                                        </div>
+
+                                        <div class="flex items-start gap-2 text-xs text-gray-500 mb-4">
+                                            <input type="checkbox" id="newsletter" name="newsletter" value="true"
+                                                class="mt-1 rounded text-primary focus:ring-primary">
+                                            <label for="newsletter">
+                                                Hozzájárulok személyes adataim hírlevél céljából való kezeléséhez.
                                             </label>
                                         </div>
 
@@ -568,7 +611,24 @@
             document.getElementById('step1').classList.add('active');
         }
 
-        // Handle Form Submit via AJAX for Email sending
+        // Logic for Language Check
+        const englishSelect = document.getElementById('english_level');
+        const langError = document.getElementById('langError');
+        const submitBtn = document.getElementById('submitBtn');
+
+        englishSelect.addEventListener('change', function () {
+            if (this.value === "Kizárólag magyar nyelvű rendszert tudunk használni") {
+                langError.classList.remove('hidden');
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                langError.classList.add('hidden');
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        });
+
+        // Handle Form Submit via Webhook to Make.com
         document.getElementById('leadForm').addEventListener('submit', function (e) {
             e.preventDefault();
 
@@ -578,33 +638,42 @@
                 return;
             }
 
+            // Double check language constraint
+            if (englishSelect.value === "Kizárólag magyar nyelvű rendszert tudunk használni") {
+                return; // Do nothing
+            }
+
             const btn = document.getElementById('submitBtn');
             const originalText = btn.innerHTML;
             btn.innerHTML = 'Küldés...';
             btn.disabled = true;
 
             const formData = new FormData(this);
-            // Convert to object
             const data = {};
             formData.forEach((value, key) => data[key] = value);
 
-            // Use Formsubmit.co AJAX
-            fetch('https://formsubmit.co/ajax/ertesites@digitallwork.hu', {
+            // Add source URL
+            data['source_url'] = window.location.href;
+
+            // Send to Make.com Webhook
+            fetch('https://hook.eu1.make.com/gwavowdmun06kl6vih6uhh03mowa64oc', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
             })
-                .then(response => response.json())
-                .then(data => {
-                    // Success - Redirect
-                    window.location.href = "koszi.html?lead=1";
+                .then(response => {
+                    if (response.ok) {
+                        // Success - Redirect
+                        window.location.href = "koszi.html?lead=1";
+                    } else {
+                        throw new Error('Network response was not ok.');
+                    }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Hiba történt a küldés során. Az űrlap működéséhez aktív internetkapcsolat szükséges. Ha a hiba fennáll, kérlek írj közvetlenül nekünk.');
+                    alert('Hiba történt a küldés során. Kérlek próbáld újra.');
                     btn.innerHTML = originalText;
                     btn.disabled = false;
                 });
