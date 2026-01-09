@@ -87,7 +87,7 @@
                         fbq('track', 'Lead');
                         clearInterval(checkPixel);
                     } else {
-                        const consent = localStorage.getItem("digitallwork_cookie_consent");
+                        const consent = localStorage.getItem("digitallwork_cookie_consent_v2");
                         if (consent !== "true") {
                             clearInterval(checkPixel);
                         }

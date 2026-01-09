@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const COOKIE_NAME = "digitallwork_cookie_consent_v2";
-    const PIXEL_ID = "3857575907663677"; // Cseréld le a valódi Pixel ID-ra
+    const PIXEL_ID = "3857575907663677";
 
     function loadMetaPixel() {
-        if (window.fbq) return; // Már betöltve
+        if (window.fbq) return;
 
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
@@ -18,10 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         fbq('init', PIXEL_ID);
         fbq('track', 'PageView');
-        console.log("Meta Pixel loaded");
     }
 
-    // Check localStorage
     const consent = localStorage.getItem(COOKIE_NAME);
 
     if (consent === "true") {
@@ -31,10 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function showCookieBanner() {
-        // Create banner HTML with Tailwind classes
         const banner = document.createElement("div");
         banner.className = "fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-[9999] p-4 md:p-6";
-        banner.style.display = "block"; // Ensure it's visible
+        banner.style.display = "block";
         banner.innerHTML = `
             <div class="max-w-[1240px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
                 <p class="text-sm text-gray-600 text-center md:text-left">
