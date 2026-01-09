@@ -39,38 +39,142 @@
 </head>
 
 <body
-    class="bg-background-light dark:bg-background-dark text-[#151117] dark:text-white font-display overflow-x-hidden antialiased flex flex-col min-h-screen">
+    class="bg-secondary-bg dark:bg-background-dark text-[#151117] dark:text-white font-display overflow-x-hidden antialiased min-h-screen flex flex-col items-center justify-center py-10 px-4">
 
-    <!-- Header -->
-    <header
-        class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f3f0f4] px-4 md:px-10 lg:px-20 py-4 bg-white/90 backdrop-blur-md sticky top-0 z-50">
-        <div class="flex items-center gap-3 text-[#151117]">
-            <img src="assets/logo.png" alt="Digitallwork Logo" class="h-10 w-auto object-contain">
+    <!-- Stylish Logo Section -->
+    <div class="mb-8 animate-fade-in-up">
+        <div class="relative group cursor-default">
+            <div
+                class="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200">
+            </div>
+            <div class="relative bg-white dark:bg-gray-900 rounded-xl p-4 shadow-lg ring-1 ring-gray-900/5">
+                <img src="assets/logo.png" alt="Digitallwork Logo" class="h-12 md:h-14 w-auto object-contain">
+            </div>
         </div>
-    </header>
+    </div>
 
-    <main class="flex-grow flex items-center justify-center p-4">
+    <!-- Unified Main Card -->
+    <main
+        class="w-full max-w-4xl bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden animate-fade-in-up delay-100">
+
+        <!-- Top Section: Success Message -->
         <div
-            class="max-w-[600px] w-full bg-white p-8 md:p-12 rounded-2xl shadow-xl text-center border border-gray-100 relative overflow-hidden">
-            <!-- Decorative BG -->
+            class="relative p-8 md:p-12 text-center border-b border-gray-100 dark:border-gray-800 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800/50">
+            <!-- Decorative Background Elements -->
             <div
-                class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none">
+                class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none">
             </div>
             <div
-                class="absolute bottom-0 left-0 w-32 h-32 bg-accent/20 rounded-full blur-2xl -ml-10 -mb-10 pointer-events-none">
-            </div>
-
-            <div
-                class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span class="material-symbols-outlined text-4xl">check_circle</span>
+                class="absolute top-0 left-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl -ml-20 -mt-20 pointer-events-none">
             </div>
 
-            <h1 class="text-3xl md:text-4xl font-extrabold text-primary-text mb-4">Köszönjük a jelentkezést!</h1>
-            <p class="text-gray-600 text-lg mb-8">
-                Sikeresen megkaptuk az adataidat. Hamarosan keresni fogunk a megadott elérhetőségeken.
-            </p>
+            <div class="relative z-10 flex flex-col items-center">
+                <div
+                    class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 shadow-sm ring-4 ring-green-50 dark:ring-green-900/20">
+                    <span class="material-symbols-outlined text-4xl">check_circle</span>
+                </div>
+
+                <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">
+                    Sikeres jelentkezés!
+                </h1>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto leading-relaxed">
+                    Köszönjük a bizalmadat. Adataidat megkaptuk, rendszerünk feldolgozza őket.
+                    <span class="font-bold text-primary">Hamarosan keresni fogunk a megadott elérhetőségeken.</span>
+                </p>
+            </div>
         </div>
+
+        <!-- Bottom Section: Free Gifts -->
+        <div class="p-8 md:p-12 bg-white dark:bg-gray-900">
+            <div class="text-center mb-10">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-wide mb-4">
+                    <span class="material-symbols-outlined text-base">card_giftcard</span>
+                    Amíg várakozol
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                    Válogass ingyenes tartalmaink közül
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1 -->
+                <a href="https://digitallwork.hu/tanulas/ai-automatizacio-minikurzus/" target="_blank"
+                    class="group relative flex items-center p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 hover:shadow-xl hover:border-primary/20 transition-all duration-300">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-white dark:bg-gray-700 shadow-sm text-primary flex items-center justify-center mr-5 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">school</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg text-gray-900 dark:text-gray-100 mb-1">AI Minikurzus</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Tanuld meg az alapokat és
+                            automatizálj.</p>
+                    </div>
+                    <div
+                        class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a href="https://forms.fillout.com/t/2T7k1U7nzVus" target="_blank"
+                    class="group relative flex items-center p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 hover:shadow-xl hover:border-pink-500/20 transition-all duration-300">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-white dark:bg-gray-700 shadow-sm text-pink-600 flex items-center justify-center mr-5 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">volunteer_activism</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg text-gray-900 dark:text-gray-100 mb-1">Ajándék AI Poszt</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Exkluzív tartalom, csak neked.
+                        </p>
+                    </div>
+                    <div
+                        class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 group-hover:bg-pink-600 group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </div>
+                </a>
+
+                <!-- Card 3 -->
+                <a href="https://digitallwork.hu/tanulas/hatekonysagnovelo-hirlevel/" target="_blank"
+                    class="group relative flex items-center p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 hover:shadow-xl hover:border-blue-500/20 transition-all duration-300">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-white dark:bg-gray-700 shadow-sm text-blue-600 flex items-center justify-center mr-5 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">mail</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg text-gray-900 dark:text-gray-100 mb-1">Hatékony Hírlevél</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Heti produktivitás tippek.</p>
+                    </div>
+                    <div
+                        class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </div>
+                </a>
+
+                <!-- Card 4 -->
+                <a href="https://digitallwork.hu/tanulas/folyamatfejlesztes-kurzus/" target="_blank"
+                    class="group relative flex items-center p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 hover:shadow-xl hover:border-orange-500/20 transition-all duration-300">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-white dark:bg-gray-700 shadow-sm text-orange-600 flex items-center justify-center mr-5 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">settings_suggest</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg text-gray-900 dark:text-gray-100 mb-1">Folyamatfejlesztés</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Szabadulj meg a káosztól.</p>
+                    </div>
+                    <div
+                        class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
     </main>
+
+    <footer class="mt-12 text-center text-gray-400 text-sm animate-fade-in-up delay-300">
+        <p>&copy; 2026 Digitallwork.hu Kft.</p>
+    </footer>
 
     <script src="assets/cookie.js"></script>
     <script>

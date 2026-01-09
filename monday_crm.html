@@ -423,76 +423,463 @@
                     <p class="text-gray-500">Valós tapasztalatok a közös munkáról.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Review 1 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
-                        <div class="flex text-yellow-400 mb-4 text-xl">
-                            <span class="material-symbols-outlined fill-current">star</span>
-                            <span class="material-symbols-outlined fill-current">star</span>
-                            <span class="material-symbols-outlined fill-current">star</span>
-                            <span class="material-symbols-outlined fill-current">star</span>
-                            <span class="material-symbols-outlined fill-current">star</span>
-                        </div>
-                        <p class="text-gray-600 italic mb-6 flex-grow">"A teljes gyártási, ügyfél és logisztikai
-                            folyamatot sikeresen átültettük a Monday és Make rendszerekbe. Egyes folyamataink teljesen
-                            automatizáltan működnek. Tamás kivételes partner."</p>
-                        <div class="flex items-center gap-4 mt-auto">
-                            <div
-                                class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold">
-                                SB</div>
-                            <div>
-                                <h4 class="font-bold text-sm">Stumpf Balázs</h4>
-                                <p class="text-xs text-gray-500">Cégvezető, UDOOR</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="relative px-4 md:px-12 max-w-[1300px] mx-auto">
+                    <!-- Navigation Buttons -->
+                    <button onclick="slideReviews(-1)"
+                        class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white text-primary hover:bg-primary hover:text-white border border-gray-200 shadow-lg rounded-full w-10 h-10 flex items-center justify-center transition-all md:-ml-5">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button onclick="slideReviews(1)"
+                        class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white text-primary hover:bg-primary hover:text-white border border-gray-200 shadow-lg rounded-full w-10 h-10 flex items-center justify-center transition-all md:-mr-5">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
 
-                    <!-- Review 2 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
-                        <div class="flex text-yellow-400 mb-4 text-xl">
-                            <span class="material-symbols-outlined fill-current">star</span>
-                            <span class="material-symbols-outlined fill-current">star</span>
-                            <span class="material-symbols-outlined fill-current">star</span>
-                            <span class="material-symbols-outlined fill-current">star</span>
-                            <span class="material-symbols-outlined fill-current">star</span>
-                        </div>
-                        <p class="text-gray-600 italic mb-6 flex-grow">"Automatizáltuk az ügyfél onboarding folyamatot,
-                            ami ezáltal nem csak profibb lett, hanem gyorsabb, kevesebb időt vesz el. Nagyon örülök,
-                            hogy belevágtunk!"</p>
-                        <div class="flex items-center gap-4 mt-auto">
-                            <div
-                                class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold">
-                                MN</div>
-                            <div>
-                                <h4 class="font-bold text-sm">Matykó Noémi</h4>
-                                <p class="text-xs text-gray-500">Cégvezető, Chiro Mkt.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Carousel Window -->
+                    <div class="overflow-hidden">
+                        <div id="reviewTrack" class="flex transition-transform duration-500 ease-out">
 
-                    <!-- Review 3 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
-                        <div class="flex text-yellow-400 mb-4 text-xl">
-                            <span class="material-symbols-outlined fill-current">star</span>
-                            <span class="material-symbols-outlined fill-current">star</span>
-                            <span class="material-symbols-outlined fill-current">star</span>
-                            <span class="material-symbols-outlined fill-current">star</span>
-                            <span class="material-symbols-outlined fill-current">star</span>
-                        </div>
-                        <p class="text-gray-600 italic mb-6 flex-grow">"A fejlesztés összesen havi 10-20 munkaórát
-                            spórol meg nekünk. Nemcsak olcsóbb lett így a működésünk, hanem a hibázás lehetősége is
-                            lecsökkent."</p>
-                        <div class="flex items-center gap-4 mt-auto">
-                            <div
-                                class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold">
-                                SZ</div>
-                            <div>
-                                <h4 class="font-bold text-sm">Szabó Szilveszter</h4>
-                                <p class="text-xs text-gray-500">Tulajdonos, Lasemedia</p>
+                            <!-- 1. Kocsis Csaba -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"Átláthatóbb lett a cégem,
+                                        könnyebben tudom követni a napi történéseket. Csökkent a felesleges
+                                        adminisztráció, kevesebb a hibalehetőség. Rugalmas felépítésű a rendszer, így
+                                        mindenki testre tudta szabni magának!"</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">
+                                            KC</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Kocsis Csaba</h4>
+                                            <p class="text-xs text-gray-500">Tulajdonos, Avadoo Design Studio</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
+                            <!-- 2. Ványi Rajmond -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"Sokkal átláthatóbbak a
+                                        projektjeink, mind tervezésben, mind a munka egyes fázisaiban. Nagy segítséget
+                                        nyújt az a pár automatizációs lépés amit eddig bevezettünk, fogunk majd még
+                                        többet is használni!"</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">
+                                            VR</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Ványi Rajmond</h4>
+                                            <p class="text-xs text-gray-500">Tulajdonos, Superior Pentest</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. Görgényi Hajni -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"Amióta bevezettük a
+                                        rendszert, újra átláthatóvá vált a belső működésünk! Nagyon leterheltek vagyunk,
+                                        emiatt nehéz volt a fejlesztésre időt szánni. Örülünk, hogy végül megléptük,
+                                        hiszen nagy terhet vesz le a rendszer a vállunkról."</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center font-bold text-sm">
+                                            GH</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Görgényi Hajni</h4>
+                                            <p class="text-xs text-gray-500">Tulajdonos, NTDisplay</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 4. Losonczi Éva -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"A rendszer bevezetése óta
+                                        egyértelműek a feladatkörök, a határidők és a prioritások. Nagyon hálás vagyok,
+                                        hogy Tamás megtalált minket, a folyamataink leírása és tisztázása mellett nagyon
+                                        hasznos, cégre és személyre szabott feladatkezelő programot kaptunk."</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center font-bold text-sm">
+                                            LÉ</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Losonczi Éva</h4>
+                                            <p class="text-xs text-gray-500">Tulajdonos, ConceptFlow</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 5. Szabó Szilveszter -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"A fejlesztés összesen havi
+                                        10-20 munkaórát spórol meg nekünk. Nemcsak olcsóbb lett így a működésünk, hanem
+                                        egyúttal a hibázás lehetősége is lecsökkent, ráadásul több idő jut a kreatív
+                                        tevékenységekre."</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">
+                                            SZ</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Szabó Szilveszter</h4>
+                                            <p class="text-xs text-gray-500">Tulajdonos, Lasemedia</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 6. Scherzer Marcell -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"Cégvezetőként heti 5-10 órát
+                                        spórolnak meg nekem a bevezetett rendszerek. Kevesebb az adminisztráció és
+                                        egyszerűbben tudok delegálni. Egy csomó feladatot már nem én végzek, emiatt
+                                        lekerült rólam a kognitív teher."</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">
+                                            SM</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Scherzer Marcell</h4>
+                                            <p class="text-xs text-gray-500">Tulajdonos, Blue Marketing</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 7. Knapcsek Katalin -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"A KNK PR egy
+                                        reklámügynökség, sok ügyféllel, rengeteg projekttel. A rendszer elhozta nekünk a
+                                        biztonságot. A projektjeink adminisztrálása egyértelmű, az időfelhasználásunk
+                                        hatékonyabb, és ráadásul még spóroltunk is vele."</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center font-bold text-sm">
+                                            KK</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Knapcsek Katalin</h4>
+                                            <p class="text-xs text-gray-500">Tulajdonos, KNK PR & Média</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 8. Steindl Máté -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"Sok ötletünk volt a
+                                        digitalizációra, de nem voltak teljesen kiforrottak, és nem tudtuk, hogyan
+                                        valósítsuk meg konkrétan. Tamás nemcsak megvalósította, hanem hasznos
+                                        javaslatokat is adott, amiket beépítettünk a működésbe."</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">
+                                            SM</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Steindl Máté</h4>
+                                            <p class="text-xs text-gray-500">Tulajdonos, SocialWings</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 9. Kocsi László -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"Az ügyfél-kommunikációs
+                                        folyamataink automatizálását és az egyedi ár kalkulátorunkat nem csak hatékony
+                                        tanácsokkal támogatta, hanem remekül kivitelezte. Így a rendelések átfutási
+                                        ideje jelentősen csökkent."</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">
+                                            KL</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Kocsi László</h4>
+                                            <p class="text-xs text-gray-500">Tulajdonos, Rapidnyomda.hu</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 10. Czigány Attila -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"Tamás segítségével kezdtük
+                                        el használni a Monday-t. Tudása nem kizárólag a szoftver bevezetését segítette,
+                                        hanem elindított egy szemléletbeli fejlődést is. Ez a folyamatos növekedés
+                                        okozta kihívások mellett is stabil hátteret biztosít."</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">
+                                            CA</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Czigány Attila</h4>
+                                            <p class="text-xs text-gray-500">Cégvezető, Visionfresh</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 11. Bliszkó Gábor -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"A munkatársi toborzást
+                                        automatizáltuk, mely kb. heti 2-3 órát spórol meg nekünk. Ha majd az egész cégen
+                                        végigvisszük ezt, szerintem min. 1 nap szabadidő felszabadul nekem
+                                        cégvezetőként. :)"</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">
+                                            BG</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Bliszkó Gábor</h4>
+                                            <p class="text-xs text-gray-500">Cégvezető, BeOnWeb</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 12. Matykó Noémi -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"Automatizáltuk az ügyfél
+                                        onboarding folyamatot, ami ezáltal nem csak profibb lett -amit az ügyfeleink
+                                        éreznek-, hanem gyorsabb, kevesebb időt vesz el, így számszerűsíthető lett a
+                                        megtérülése is. Nagyon örülök, hogy belevágtunk!"</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center font-bold text-sm">
+                                            MN</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Matykó Noémi</h4>
+                                            <p class="text-xs text-gray-500">Cégvezető, Chiro Marketing</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 13. Stumpf Balázs -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"A teljes gyártási, ügyfél és
+                                        logisztikai folyamatot sikeresen átültettük a Monday és Make rendszerekbe. Egyes
+                                        folyamataink teljesen automatizáltan működnek. Tamás kivételes partner,
+                                        konstruktív és segít minden problémára megoldást találni."</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">
+                                            SB</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Stumpf Balázs</h4>
+                                            <p class="text-xs text-gray-500">Cégvezető, UDOOR Fürdőkádajtó</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 14. Király Krisztián -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"Sokkal átláthatóbbak a
+                                        folyamataink, egyértelműbbek a feladatok, és a hozzájuk tartozó felelősök
+                                        valamint határidők. Nem utolsósorban jelentősen csökkent a 'felesleges'
+                                        levelezések száma. :-)"</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">
+                                            KK</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Király Krisztián</h4>
+                                            <p class="text-xs text-gray-500">Cégvezető, Konverzió Mester</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 15. Kőházi Zoltán -->
+                            <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+                                <div
+                                    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+                                    <div class="flex text-yellow-400 mb-3 text-lg">
+                                        <span class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span><span
+                                            class="material-symbols-outlined fill-current">star</span>
+                                    </div>
+                                    <p class="text-gray-600 italic text-sm mb-4 flex-grow">"Megtaláltuk azt a rendszert
+                                        ahol átlátható formában nyilván tudjuk tartani az aktuális projektjeinket,
+                                        feladatainkat, ezzel heti több óra munkaidőt tudunk megtakarítani. Csökkent a
+                                        hibák és az e-mailes kommunikációból eredő félreértések száma."</p>
+                                    <div class="flex items-center gap-3 mt-auto">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">
+                                            KZ</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm">Kőházi Zoltán</h4>
+                                            <p class="text-xs text-gray-500">Ügyvezető, Vendinvest</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
+
+                <!-- Carousel Logic -->
+                <script>
+                    let currentReviewIndex = 0;
+
+                    function slideReviews(direction) {
+                        const track = document.getElementById('reviewTrack');
+                        const items = track.children;
+                        const totalItems = items.length;
+
+                        // Determine how many items are visible
+                        const isMobile = window.innerWidth < 768;
+                        const itemsVisible = isMobile ? 1 : 3;
+
+                        currentReviewIndex += direction;
+
+                        // Boundaries
+                        if (currentReviewIndex < 0) {
+                            currentReviewIndex = 0;
+                        } else if (currentReviewIndex > totalItems - itemsVisible) {
+                            currentReviewIndex = totalItems - itemsVisible;
+                        }
+
+                        // Calculate width percentage to slide
+                        // On mobile: 100% per item. On Desktop: 33.333% per item
+                        const slidePercent = isMobile ? 100 : (100 / 3);
+                        const translateValue = -(currentReviewIndex * slidePercent);
+
+                        track.style.transform = `translateX(${translateValue}%)`;
+                    }
+
+                    // Handle Resize
+                    window.addEventListener('resize', () => slideReviews(0));
+                </script>
             </div>
         </section>
 
