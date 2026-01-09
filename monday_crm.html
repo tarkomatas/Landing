@@ -652,23 +652,41 @@
             const data = {};
             formData.forEach((value, key) => data[key] = value);
 
-            // Add source URL
+            // Shared Data Enhancements
             data['source_url'] = window.location.href;
+            const customSubject = `🚀 konzultáció jelentkezés: ${data['name']}`;
+            data['subject'] = customSubject; // For Webhook/Make
 
-            // Custom Subject for Notification
-            data['subject'] = `🚀 konzultáció jelentkezés: ${data['name']}`;
+            // Formsubmit.co Specific Configurations
+            data['_subject'] = customSubject; // For Email Subject
+            data['_captcha'] = 'false';
+            data['_template'] = 'table';
 
-            // Send to Make.com Webhook
-            fetch('https://hook.eu1.make.com/gwavowdmun06kl6vih6uhh03mowa64oc', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        // Success - Redirect
+            // URLs
+            const webhookUrl = 'https://hook.eu1.make.com/gwavowdmun06kl6vih6uhh03mowa64oc';
+            const emailUrl = 'https://formsubmit.co/ajax/ertesites@digitallwork.hu';
+
+            // Send to Both Simultaneously
+            Promise.all([
+                // 1. Webhook
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                }),
+                // 2. Email (Formsubmit)
+                fetch(emailUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+            ])
+                .then(async ([webhookResponse, emailResponse]) => {
+                    // We check if at least one of them succeeded, or handle errors silently for better UX
+                    if (webhookResponse.ok || emailResponse.ok) {
                         window.location.href = "koszi.html?lead=1";
                     } else {
                         throw new Error('Network response was not ok.');
