@@ -1044,13 +1044,22 @@
             const customSubject = `🚀 konzultáció jelentkezés: ${data['name']}`;
             data['subject'] = customSubject;
 
+            // 1. Send to Make.com Webhook (Clean Data)
+            fetch('https://hook.eu1.make.com/gwavowdmun06kl6vih6uhh03mowa64oc', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+                .then(() => console.log('Webhook sent successfully'))
+                .catch(err => console.error('Webhook error:', err));
+
             // Formsubmit.co Configuration
             data['_subject'] = customSubject;
             data['_captcha'] = 'false';
             data['_template'] = 'table';
-            data['_webhook'] = 'https://hook.eu1.make.com/gwavowdmun06kl6vih6uhh03mowa64oc'; // Formsubmit triggers this!
+            // Removed _webhook to avoid duplication/issues
 
-            // Single Fetch to Formsubmit (Email + Webhook trigger)
+            // 2. Send to Formsubmit (Email Notification)
             fetch('https://formsubmit.co/ajax/ertesites@digitallwork.hu', {
                 method: 'POST',
                 headers: {
