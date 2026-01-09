@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class="light" lang="hu">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Köszönjük! - Digitallwork.hu</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8420cf",
+                        "primary-text": "#8421D1",
+                        "accent": "#70E2D9",
+                        "accent-foreground": "#151117",
+                        "background-light": "#ffffff",
+                        "background-dark": "#1a1a1a",
+                        "secondary-bg": "#f5f5f5",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-[#151117] dark:text-white font-display overflow-x-hidden antialiased flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header
+        class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f3f0f4] px-4 md:px-10 lg:px-20 py-4 bg-white/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="flex items-center gap-3 text-[#151117]">
+            <img src="assets/logo.png" alt="Digitallwork Logo" class="h-10 w-auto object-contain">
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div
+            class="max-w-[600px] w-full bg-white p-8 md:p-12 rounded-2xl shadow-xl text-center border border-gray-100 relative overflow-hidden">
+            <!-- Decorative BG -->
+            <div
+                class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none">
+            </div>
+            <div
+                class="absolute bottom-0 left-0 w-32 h-32 bg-accent/20 rounded-full blur-2xl -ml-10 -mb-10 pointer-events-none">
+            </div>
+
+            <div
+                class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="material-symbols-outlined text-4xl">check_circle</span>
+            </div>
+
+            <h1 class="text-3xl md:text-4xl font-extrabold text-primary-text mb-4">Köszönjük a jelentkezést!</h1>
+            <p class="text-gray-600 text-lg mb-8">
+                Sikeresen megkaptuk az adataidat. Hamarosan keresni fogunk a megadott elérhetőségeken (általában 24 órán
+                belül).
+            </p>
+        </div>
+    </main>
+
+    <script src="assets/cookie.js"></script>
+    <script>
+        // Lead mérés logika (változatlan)
+        window.addEventListener('load', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const isLead = urlParams.get("lead") === "1";
+
+            if (isLead) {
+                console.log("Lead paraméter észlelve.");
+                const checkPixel = setInterval(() => {
+                    if (window.fbq) {
+                        fbq('track', 'Lead');
+                        clearInterval(checkPixel);
+                    } else {
+                        const consent = localStorage.getItem("digitallwork_cookie_consent");
+                        if (consent !== "true") {
+                            clearInterval(checkPixel);
+                        }
+                    }
+                }, 500);
+                setTimeout(() => clearInterval(checkPixel), 10000);
+            }
+        });
+    </script>
+</body>
+
+</html>
