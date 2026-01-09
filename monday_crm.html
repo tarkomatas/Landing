@@ -652,45 +652,30 @@
             const data = {};
             formData.forEach((value, key) => data[key] = value);
 
-            // Shared Data Enhancements
+            // Shared Data
             data['source_url'] = window.location.href;
             const customSubject = `🚀 konzultáció jelentkezés: ${data['name']}`;
-            data['subject'] = customSubject; // For Webhook/Make
+            data['subject'] = customSubject;
 
-            // Formsubmit.co Specific Configurations
-            data['_subject'] = customSubject; // For Email Subject
+            // Formsubmit.co Configuration
+            data['_subject'] = customSubject;
             data['_captcha'] = 'false';
             data['_template'] = 'table';
+            data['_webhook'] = 'https://hook.eu1.make.com/gwavowdmun06kl6vih6uhh03mowa64oc'; // Formsubmit triggers this!
 
-            // URLs
-            const webhookUrl = 'https://hook.eu1.make.com/gwavowdmun06kl6vih6uhh03mowa64oc';
-            const emailUrl = 'https://formsubmit.co/ajax/ertesites@digitallwork.hu';
-
-            // Send to Both Simultaneously
-            Promise.all([
-                // 1. Webhook
-                fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                }),
-                // 2. Email (Formsubmit)
-                fetch(emailUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                })
-            ])
-                .then(async ([webhookResponse, emailResponse]) => {
-                    // We check if at least one of them succeeded, or handle errors silently for better UX
-                    if (webhookResponse.ok || emailResponse.ok) {
-                        window.location.href = "koszi.html?lead=1";
-                    } else {
-                        throw new Error('Network response was not ok.');
-                    }
+            // Single Fetch to Formsubmit (Email + Webhook trigger)
+            fetch('https://formsubmit.co/ajax/ertesites@digitallwork.hu', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Success - Redirect
+                    window.location.href = "koszi.html?lead=1";
                 })
                 .catch(error => {
                     console.error('Error:', error);
