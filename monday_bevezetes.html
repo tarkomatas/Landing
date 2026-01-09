@@ -1038,37 +1038,39 @@
                 btn.disabled = true;
 
                 const formData = new FormData(this);
-                const data = {};
-                formData.forEach((value, key) => data[key] = value);
 
-                // Shared Data
-                data['source_url'] = window.location.href;
-                const customSubject = `🚀 konzultáció jelentkezés: ${data['name']}`;
-                data['subject'] = customSubject;
+                // Collect clean form data
+                const cleanData = {};
+                formData.forEach((value, key) => cleanData[key] = value);
 
-                // 1. Send to Make.com Webhook (Clean Data)
+                // Add source URL and subject for both
+                cleanData['source_url'] = window.location.href;
+                const customSubject = `🚀 konzultáció jelentkezés: ${cleanData['name']}`;
+                cleanData['subject'] = customSubject;
+
+                // 1. Send to Make.com Webhook (Clean Data Only)
+                const webhookData = { ...cleanData };
                 fetch('https://hook.eu1.make.com/gwavowdmun06kl6vih6uhh03mowa64oc', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(webhookData)
                 })
                     .then(() => console.log('Webhook sent successfully'))
                     .catch(err => console.error('Webhook error:', err));
 
-                // Formsubmit.co Configuration
-                data['_subject'] = customSubject;
-                data['_captcha'] = 'false';
-                data['_template'] = 'table';
-                // Removed _webhook to avoid duplication/issues
+                // 2. Send to Formsubmit (Email Notification with config)
+                const formsubmitData = { ...cleanData };
+                formsubmitData['_subject'] = customSubject;
+                formsubmitData['_captcha'] = 'false';
+                formsubmitData['_template'] = 'table';
 
-                // 2. Send to Formsubmit (Email Notification)
                 fetch('https://formsubmit.co/ajax/ertesites@digitallwork.hu', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(formsubmitData)
                 })
                     .then(response => response.json())
                     .then(data => {
