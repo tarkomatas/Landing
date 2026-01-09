@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const COOKIE_NAME = "digitallwork_cookie_consent_v2";
-    const PIXEL_ID = "YOUR_PIXEL_ID"; // Cseréld le a valódi Pixel ID-ra
+    const PIXEL_ID = "3857575907663677"; // Cseréld le a valódi Pixel ID-ra
 
     function loadMetaPixel() {
         if (window.fbq) return; // Már betöltve
