@@ -196,10 +196,11 @@
                                                 a céged a marketingben?</label>
                                             <select name="marketing_level"
                                                 class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
-                                                <option value="none">Nincs semmi tudásunk</option>
-                                                <option value="beginner">Kezdő, minimális tudással</option>
-                                                <option value="advanced">Haladó</option>
-                                                <option value="pro">Profi</option>
+                                                <option value="Nincs semmi tudásunk">Nincs semmi tudásunk</option>
+                                                <option value="Kezdő, minimális tudással">Kezdő, minimális tudással
+                                                </option>
+                                                <option value="Haladó">Haladó</option>
+                                                <option value="Profi">Profi</option>
                                             </select>
                                         </div>
                                         <div>
@@ -207,10 +208,11 @@
                                                 marketinget?</label>
                                             <select name="marketing_role"
                                                 class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
-                                                <option value="solopreneur">Én (egyéni vállalkozóként)</option>
-                                                <option value="ceo">Én (cégvezetőként)</option>
-                                                <option value="internal_team">Belsős marketing csapat</option>
-                                                <option value="agency">Ügynökség</option>
+                                                <option value="Én (egyéni vállalkozóként)">Én (egyéni vállalkozóként)
+                                                </option>
+                                                <option value="Én (cégvezetőként)">Én (cégvezetőként)</option>
+                                                <option value="Belsős marketing csapat">Belsős marketing csapat</option>
+                                                <option value="Ügynökség">Ügynökség</option>
                                             </select>
                                         </div>
                                         <button type="button" onclick="nextStep(3)"
@@ -228,11 +230,11 @@
                                                 gondod most?</label>
                                             <select name="pain_point"
                                                 class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
-                                                <option value="time">Időhiány</option>
-                                                <option value="ideas">Kevés ötlet</option>
-                                                <option value="consistency">Nincs rendszeresség</option>
-                                                <option value="quality">Gyenge minőség</option>
-                                                <option value="knowledge">Nem értek a témához</option>
+                                                <option value="Időhiány">Időhiány</option>
+                                                <option value="Kevés ötlet">Kevés ötlet</option>
+                                                <option value="Nincs rendszeresség">Nincs rendszeresség</option>
+                                                <option value="Gyenge minőség">Gyenge minőség</option>
+                                                <option value="Nem értek a témához">Nem értek a témához</option>
                                             </select>
                                         </div>
                                         <div>
@@ -240,17 +242,19 @@
                                                 elsősorban?</label>
                                             <div class="space-y-1">
                                                 <label class="flex items-center gap-2 text-sm text-gray-600">
-                                                    <input type="checkbox" name="usage[]" value="posts"
+                                                    <input type="checkbox" name="usage[]"
+                                                        value="Poszt gyártás és publikálás"
                                                         class="rounded text-primary focus:ring-primary">
                                                     Poszt gyártás és publikálás
                                                 </label>
                                                 <label class="flex items-center gap-2 text-sm text-gray-600">
-                                                    <input type="checkbox" name="usage[]" value="ads"
+                                                    <input type="checkbox" name="usage[]"
+                                                        value="Facebook/Insta hirdetés gyártás"
                                                         class="rounded text-primary focus:ring-primary">
                                                     Facebook/Insta hirdetés gyártás
                                                 </label>
                                                 <label class="flex items-center gap-2 text-sm text-gray-600">
-                                                    <input type="checkbox" name="usage[]" value="newsletter"
+                                                    <input type="checkbox" name="usage[]" value="Hírlevél gyártás"
                                                         class="rounded text-primary focus:ring-primary">
                                                     Hírlevél gyártás
                                                 </label>
@@ -791,11 +795,24 @@
                 cleanData['subject'] = customSubject;
 
                 // 1. Send to Make.com Webhook (Clean Data Only)
-                const webhookData = { ...cleanData };
-                fetch('https://hook.eu1.make.com/gwavowdmun06kl6vih6uhh03mowa64oc', {
+                // Prepare data specifically for the new webhook structure
+                const webhookPayload = {
+                    submission_date: new Date().toISOString(),
+                    nev: cleanData['name'],
+                    email: cleanData['email'],
+                    telefonszam: cleanData['phone'],
+                    source_url: window.location.href,
+                    // Sending other fields as extra data just in case
+                    marketing_level: cleanData['marketing_level'],
+                    marketing_role: cleanData['marketing_role'],
+                    pain_point: cleanData['pain_point'],
+                    usage: Array.isArray(cleanData['usage[]']) ? cleanData['usage[]'].join(', ') : cleanData['usage[]']
+                };
+
+                fetch('https://hook.eu1.make.com/ihohtlulor66lvhouyoty9azbut7lzx7', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(webhookData)
+                    body: JSON.stringify(webhookPayload)
                 })
                     .then(() => console.log('Webhook sent successfully'))
                     .catch(err => console.error('Webhook error:', err));
