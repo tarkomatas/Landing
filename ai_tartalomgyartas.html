@@ -257,7 +257,7 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit"
+                                        <button type="submit" id="submitBtn"
                                             class="w-full mt-4 flex items-center justify-center rounded-lg h-12 bg-accent text-accent-foreground text-base font-bold shadow-md hover:brightness-95 transition-all">
                                             Jelentkezés küldése
                                         </button>
@@ -267,7 +267,7 @@
                                                 class="mt-1 rounded text-primary focus:ring-primary">
                                             <label for="privacy">
                                                 Az <a
-                                                    href="https://digitallwork.hu/adatkezelesi-tajekoztato/digitallwork-hu-kft/"
+                                                    href="https://digitallwork.hu/adatkezelesi-tajekoztato/marko-tamas-ev/"
                                                     target="_blank" class="underline hover:text-primary">Adatkezelési
                                                     Tájékoztatóban</a> foglaltakat elolvastam, megértettem és tudomásul
                                                 vettem.
@@ -719,13 +719,15 @@
                     <div>
                         <h4 class="text-white font-bold mb-4">Információk</h4>
                         <ul class="space-y-2">
-                            <li><a href="#" class="hover:text-white">Adatkezelési tájékoztató</a></li>
-                            <li><a href="#" class="hover:text-white">Impresszum</a></li>
+                            <li><a href="https://digitallwork.hu/adatkezelesi-tajekoztato/marko-tamas-ev/"
+                                    class="hover:text-white" target="_blank">Adatkezelési tájékoztató</a></li>
+                            <li><a href="https://digitallwork.hu/impresszum/" class="hover:text-white"
+                                    target="_blank">Impresszum</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p>Digitallwork.hu Kft.</p>
+                    <p></p>
                     <p>Copyright © digitallwork.hu | 2026</p>
                 </div>
             </div>
@@ -745,6 +747,91 @@
                 activeStep.classList.add('active');
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Handle Form Submit via Webhook to Make.com
+            document.getElementById('leadForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const privacy = document.getElementById('privacy');
+                if (!privacy.checked) {
+                    alert("Kérlek fogadd el az adatkezelési tájékoztatót!");
+                    return;
+                }
+
+                const btn = document.getElementById('submitBtn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = 'Küldés...';
+                btn.disabled = true;
+
+                const formData = new FormData(this);
+
+                // Collect clean form data
+                const cleanData = {};
+                formData.forEach((value, key) => {
+                    // Handle checkbox arrays (like usage[])
+                    if (cleanData[key]) {
+                        if (!Array.isArray(cleanData[key])) {
+                            cleanData[key] = [cleanData[key]];
+                        }
+                        cleanData[key].push(value);
+                    } else {
+                        cleanData[key] = value;
+                    }
+                });
+
+                // Convert arrays to string for simpler webhook handling if needed, or keep as array
+                // For this implementation, we'll keep it simple.
+
+                // Add source URL and subject
+                cleanData['source_url'] = window.location.href;
+                const customSubject = `🚀 AI Tartalomgyártás jelentkezés: ${cleanData['name']}`;
+                cleanData['subject'] = customSubject;
+
+                // 1. Send to Make.com Webhook (Clean Data Only)
+                const webhookData = { ...cleanData };
+                fetch('https://hook.eu1.make.com/gwavowdmun06kl6vih6uhh03mowa64oc', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(webhookData)
+                })
+                    .then(() => console.log('Webhook sent successfully'))
+                    .catch(err => console.error('Webhook error:', err));
+
+                // 2. Send to Formsubmit (Email Notification with config)
+                const formsubmitData = { ...cleanData };
+                formsubmitData['_subject'] = customSubject;
+                formsubmitData['_captcha'] = 'false';
+                formsubmitData['_template'] = 'table';
+
+                // If usage[] became an array, join it for formsubmit readability
+                if (Array.isArray(formsubmitData['usage[]'])) {
+                    formsubmitData['usage'] = formsubmitData['usage[]'].join(', ');
+                    delete formsubmitData['usage[]'];
+                }
+
+                fetch('https://formsubmit.co/ajax/ertesites@digitallwork.hu', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formsubmitData)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        window.location.href = "koszi.html?lead=1";
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Hiba történt a küldés során. Kérlek próbáld újra.');
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                    });
+            });
+        });
     </script>
 </body>
 
