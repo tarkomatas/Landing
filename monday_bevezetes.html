@@ -1017,9 +1017,25 @@
                 }
             });
 
+            const FORM_SUBMITTED_KEY = 'monday_bevezetes_form_submitted';
+            const submitBtnInit = document.getElementById('submitBtn');
+
+            // Check if form was already submitted in this session
+            if (sessionStorage.getItem(FORM_SUBMITTED_KEY) === 'true') {
+                submitBtnInit.disabled = true;
+                submitBtnInit.innerHTML = '<span>Már elküldve</span>';
+                submitBtnInit.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+
             // Handle Form Submit via Webhook to Make.com
-            document.getElementById('leadForm').addEventListener('submit', function (e) {
+            document.getElementById('leadForm').addEventListener('submit', async function (e) {
                 e.preventDefault();
+
+                // Double-check: prevent duplicate submissions
+                if (sessionStorage.getItem(FORM_SUBMITTED_KEY) === 'true') {
+                    console.log('Form already submitted, preventing duplicate.');
+                    return;
+                }
 
                 const privacy = document.getElementById('privacy');
                 if (!privacy.checked) {
@@ -1033,9 +1049,11 @@
                 }
 
                 const btn = document.getElementById('submitBtn');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = 'Küldés...';
+                btn.innerHTML = '<span>Küldés...</span>';
                 btn.disabled = true;
+
+                // Mark as submitted IMMEDIATELY to prevent race conditions
+                sessionStorage.setItem(FORM_SUBMITTED_KEY, 'true');
 
                 const formData = new FormData(this);
 
@@ -1048,40 +1066,52 @@
                 const customSubject = `🚀 konzultáció jelentkezés: ${cleanData['name']}`;
                 cleanData['subject'] = customSubject;
 
-                // 1. Send to Make.com Webhook (Clean Data Only)
+                // Prepare webhook payload
                 const webhookData = { ...cleanData };
-                fetch('https://hook.eu1.make.com/gwavowdmun06kl6vih6uhh03mowa64oc', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(webhookData)
-                })
-                    .then(() => console.log('Webhook sent successfully'))
-                    .catch(err => console.error('Webhook error:', err));
 
-                // 2. Send to Formsubmit (Email Notification with config)
+                // Prepare formsubmit payload
                 const formsubmitData = { ...cleanData };
                 formsubmitData['_subject'] = customSubject;
                 formsubmitData['_captcha'] = 'false';
                 formsubmitData['_template'] = 'table';
 
-                fetch('https://formsubmit.co/ajax/ertesites@digitallwork.hu', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(formsubmitData)
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        window.location.href = "koszi.html?lead=1";
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('Hiba történt a küldés során. Kérlek próbáld újra.');
-                        btn.innerHTML = originalText;
-                        btn.disabled = false;
+                // Send BOTH requests in parallel using Promise.allSettled
+                // This ensures both get a chance to complete before redirect
+                try {
+                    const results = await Promise.allSettled([
+                        fetch('https://hook.eu1.make.com/gwavowdmun06kl6vih6uhh03mowa64oc', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(webhookData)
+                        }),
+                        fetch('https://formsubmit.co/ajax/ertesites@digitallwork.hu', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify(formsubmitData)
+                        })
+                    ]);
+
+                    // Log results for debugging
+                    results.forEach((result, index) => {
+                        const name = index === 0 ? 'Webhook' : 'FormSubmit';
+                        if (result.status === 'fulfilled') {
+                            console.log(`${name} sent successfully`);
+                        } else {
+                            console.error(`${name} error:`, result.reason);
+                        }
                     });
+
+                    // Always redirect after submission attempt (prevents re-submission)
+                    window.location.href = "koszi.html?lead=1";
+
+                } catch (error) {
+                    console.error('Unexpected error:', error);
+                    // Still redirect to prevent duplicate submissions
+                    window.location.href = "koszi.html?lead=1";
+                }
             });
 
 
