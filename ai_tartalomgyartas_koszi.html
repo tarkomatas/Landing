@@ -113,27 +113,56 @@
 
     <script src="assets/cookie.js"></script>
     <script>
-        // Lead mérés logika
-        window.addEventListener('load', function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const isLead = urlParams.get("lead") === "1";
+            // Lead mérés logika - javított verzió
+            (function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                const isLead = urlParams.get("lead") === "1";
 
-            if (isLead) {
-                console.log("Lead paraméter észlelve.");
-                const checkPixel = setInterval(() => {
-                    if (window.fbq) {
-                        fbq('track', 'Lead');
-                        clearInterval(checkPixel);
-                    } else {
-                        const consent = localStorage.getItem("digitallwork_cookie_consent_v2");
-                        if (consent !== "true") {
-                            clearInterval(checkPixel);
+                if (!isLead) return;
+
+                console.log("Lead paraméter észlelve, pixel tracking indul...");
+
+                let leadTracked = false;
+                let attempts = 0;
+                const maxAttempts = 40; // 40 * 500ms = 20 másodperc max várakozás
+
+                function trackLead() {
+                    if (leadTracked) return;
+
+                    attempts++;
+                    console.log(`Lead tracking attempt ${attempts}/${maxAttempts}`);
+
+                    // Ha a pixel elérhető, track-eljük
+                    if (typeof fbq === 'function') {
+                        try {
+                            fbq('track', 'Lead');
+                            leadTracked = true;
+                            console.log("✅ Facebook Lead event sikeresen elküldve!");
+                            return true;
+                        } catch (e) {
+                            console.error("Pixel tracking hiba:", e);
                         }
                     }
-                }, 500);
-                setTimeout(() => clearInterval(checkPixel), 10000);
-            }
-        });
+
+                    // Ha elértük a max próbálkozást, állítsuk le
+                    if (attempts >= maxAttempts) {
+                        console.log("⚠️ Lead tracking timeout - pixel nem töltődött be (consent hiány vagy adblock)");
+                        return true; // Állítsuk le a retry-t
+                    }
+
+                    return false; // Folytassuk a próbálkozást
+                }
+
+                // Első próbálkozás azonnal
+                if (!trackLead()) {
+                    // Ha nem sikerült, ütemezett újrapróbálkozás
+                    const checkInterval = setInterval(() => {
+                        if (trackLead()) {
+                            clearInterval(checkInterval);
+                        }
+                    }, 500);
+                }
+            })();
     </script>
 </body>
 
