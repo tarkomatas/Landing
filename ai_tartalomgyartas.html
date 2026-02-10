@@ -158,8 +158,60 @@
 
                             <form id="leadForm"
                                 class="space-y-4 max-h-[500px] overflow-hidden pr-2 custom-scrollbar relative">
-                                <!-- Step 1: Contact Info -->
+
+                                <!-- Step 1: Qualifying Questions (marketing level + role) -->
                                 <div class="form-step active" data-step="1">
+                                    <div class="space-y-4">
+                                        <div>
+                                            <label class="block text-sm font-bold text-gray-700 mb-1">Milyen szinten van
+                                                a céged a marketingben?</label>
+                                            <select name="marketing_level" id="marketingLevel"
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
+                                                <option value="" disabled selected>Válassz...</option>
+                                                <option value="Nincs semmi tudásunk">Nincs semmi tudásunk</option>
+                                                <option value="Kezdő, minimális tudással">Kezdő, minimális tudással
+                                                </option>
+                                                <option value="Haladó">Haladó</option>
+                                                <option value="Profi">Profi</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-bold text-gray-700 mb-1">Ki csinálja a
+                                                marketinget?</label>
+                                            <select name="marketing_role" id="marketingRole"
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
+                                                <option value="" disabled selected>Válassz...</option>
+                                                <option value="Én (egyéni vállalkozóként)">Én (egyéni vállalkozóként)
+                                                </option>
+                                                <option value="Én (cégvezetőként)">Én (cégvezetőként)</option>
+                                                <option value="Belsős marketing csapat">Belsős marketing csapat</option>
+                                                <option value="Ügynökség">Ügynökség</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" onclick="qualifyAndNext()"
+                                            class="w-full mt-4 flex items-center justify-center rounded-lg h-12 bg-accent text-accent-foreground text-base font-bold shadow-md hover:brightness-95 transition-all">
+                                            Tovább
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Disqualification Screen -->
+                                <div class="form-step" data-step="rejected">
+                                    <div class="text-center py-6 space-y-4">
+                                        <div
+                                            class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
+                                            <span class="material-symbols-outlined text-orange-500 text-3xl">info</span>
+                                        </div>
+                                        <h4 class="text-xl font-bold text-gray-800">Köszönjük az érdeklődésedet!</h4>
+                                        <p class="text-gray-600 leading-relaxed max-w-[400px] mx-auto">
+                                            A megadott adatok alapján úgy látjuk, hogy nem lenne a platformunk megfelelő
+                                            számomdra. Így nem is szeretnénk az idődet húzni, megértésed köszönjük!
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Step 2: Contact Info -->
+                                <div class="form-step" data-step="2">
                                     <div class="space-y-4">
                                         <div>
                                             <label class="block text-sm font-bold text-gray-700 mb-1">Név</label>
@@ -181,44 +233,17 @@
                                                 class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm"
                                                 placeholder="+36 30 123 4567">
                                         </div>
-                                        <button type="button" onclick="nextStep(2)"
-                                            class="w-full mt-4 flex items-center justify-center rounded-lg h-12 bg-accent text-accent-foreground text-base font-bold shadow-md hover:brightness-95 transition-all">
-                                            Tovább
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <!-- Step 2: Questions 1 & 2 -->
-                                <div class="form-step" data-step="2">
-                                    <div class="space-y-4">
-                                        <div>
-                                            <label class="block text-sm font-bold text-gray-700 mb-1">Milyen szinten van
-                                                a céged a marketingben?</label>
-                                            <select name="marketing_level"
-                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
-                                                <option value="Nincs semmi tudásunk">Nincs semmi tudásunk</option>
-                                                <option value="Kezdő, minimális tudással">Kezdő, minimális tudással
-                                                </option>
-                                                <option value="Haladó">Haladó</option>
-                                                <option value="Profi">Profi</option>
-                                            </select>
+                                        <div class="flex gap-3 mt-4">
+                                            <button type="button" onclick="nextStep(1)"
+                                                class="flex-shrink-0 flex items-center justify-center rounded-lg h-12 px-4 border-2 border-gray-300 text-gray-600 text-base font-bold hover:bg-gray-50 transition-all">
+                                                <span class="material-symbols-outlined text-base mr-1">arrow_back</span>
+                                                Vissza
+                                            </button>
+                                            <button type="button" onclick="nextStep(3)"
+                                                class="flex-1 flex items-center justify-center rounded-lg h-12 bg-accent text-accent-foreground text-base font-bold shadow-md hover:brightness-95 transition-all">
+                                                Tovább
+                                            </button>
                                         </div>
-                                        <div>
-                                            <label class="block text-sm font-bold text-gray-700 mb-1">Ki csinálja a
-                                                marketinget?</label>
-                                            <select name="marketing_role"
-                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
-                                                <option value="Én (egyéni vállalkozóként)">Én (egyéni vállalkozóként)
-                                                </option>
-                                                <option value="Én (cégvezetőként)">Én (cégvezetőként)</option>
-                                                <option value="Belsős marketing csapat">Belsős marketing csapat</option>
-                                                <option value="Ügynökség">Ügynökség</option>
-                                            </select>
-                                        </div>
-                                        <button type="button" onclick="nextStep(3)"
-                                            class="w-full mt-4 flex items-center justify-center rounded-lg h-12 bg-accent text-accent-foreground text-base font-bold shadow-md hover:brightness-95 transition-all">
-                                            Tovább
-                                        </button>
                                     </div>
                                 </div>
 
@@ -261,11 +286,6 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit" id="submitBtn"
-                                            class="w-full mt-4 flex items-center justify-center rounded-lg h-12 bg-accent text-accent-foreground text-base font-bold shadow-md hover:brightness-95 transition-all">
-                                            Jelentkezés küldése
-                                        </button>
-
                                         <div class="flex items-start gap-2 text-xs text-gray-500 my-2">
                                             <input type="checkbox" id="privacy" required
                                                 class="mt-1 rounded text-primary focus:ring-primary">
@@ -276,6 +296,18 @@
                                                     Tájékoztatóban</a> foglaltakat elolvastam, megértettem és tudomásul
                                                 vettem.
                                             </label>
+                                        </div>
+
+                                        <div class="flex gap-3 mt-4">
+                                            <button type="button" onclick="nextStep(2)"
+                                                class="flex-shrink-0 flex items-center justify-center rounded-lg h-12 px-4 border-2 border-gray-300 text-gray-600 text-base font-bold hover:bg-gray-50 transition-all">
+                                                <span class="material-symbols-outlined text-base mr-1">arrow_back</span>
+                                                Vissza
+                                            </button>
+                                            <button type="submit" id="submitBtn"
+                                                class="flex-1 flex items-center justify-center rounded-lg h-12 bg-accent text-accent-foreground text-base font-bold shadow-md hover:brightness-95 transition-all">
+                                                Jelentkezés küldése
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -749,6 +781,28 @@
             const activeStep = document.querySelector(`.form-step[data-step="${step}"]`);
             if (activeStep) {
                 activeStep.classList.add('active');
+            }
+        }
+
+        function qualifyAndNext() {
+            const level = document.getElementById('marketingLevel').value;
+            const role = document.getElementById('marketingRole').value;
+
+            // Validate that both are selected
+            if (!level || !role) {
+                alert('Kérlek válaszolj mindkét kérdésre!');
+                return;
+            }
+
+            // Check disqualifying conditions
+            const isDisqualified =
+                level === 'Nincs semmi tudásunk' ||
+                role === 'Én (egyéni vállalkozóként)';
+
+            if (isDisqualified) {
+                nextStep('rejected');
+            } else {
+                nextStep(2);
             }
         }
 
