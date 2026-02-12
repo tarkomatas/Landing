@@ -180,7 +180,8 @@
                                             <select name="marketing_level" id="marketingLevel"
                                                 class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
                                                 <option value="" disabled selected>Válassz...</option>
-                                                <option value="Nincs semmi tudásunk">Nincs semmi tudásunk</option>
+                                                <option value="Egyáltalán nem értünk semmit a témához">Egyáltalán nem
+                                                    értünk semmit a témához</option>
                                                 <option value="Kezdő, minimális tudással">Kezdő, minimális tudással
                                                 </option>
                                                 <option value="Haladó">Haladó</option>
@@ -222,7 +223,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Step 2: Contact Info -->
+                                <!-- Step 2: Contact Info & Privacy -->
                                 <div class="form-step" data-step="2">
                                     <div class="space-y-4">
                                         <div>
@@ -245,58 +246,6 @@
                                                 class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm"
                                                 placeholder="+36 30 123 4567">
                                         </div>
-                                        <div class="flex gap-3 mt-4">
-                                            <button type="button" onclick="nextStep(1)"
-                                                class="flex-shrink-0 flex items-center justify-center rounded-lg h-12 px-4 border-2 border-gray-300 text-gray-600 text-base font-bold hover:bg-gray-50 transition-all">
-                                                <span class="material-symbols-outlined text-base mr-1">arrow_back</span>
-                                                Vissza
-                                            </button>
-                                            <button type="button" onclick="nextStep(3)"
-                                                class="flex-1 flex items-center justify-center rounded-lg h-12 bg-accent text-accent-foreground text-base font-bold shadow-md hover:brightness-95 transition-all">
-                                                Tovább
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Step 3: Questions 3 & 4 + Submit -->
-                                <div class="form-step" data-step="3">
-                                    <div class="space-y-4">
-                                        <div>
-                                            <label class="block text-sm font-bold text-gray-700 mb-1">Mi a legnagyobb
-                                                gondod most?</label>
-                                            <select name="pain_point"
-                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
-                                                <option value="Időhiány">Időhiány</option>
-                                                <option value="Kevés ötlet">Kevés ötlet</option>
-                                                <option value="Nincs rendszeresség">Nincs rendszeresség</option>
-                                                <option value="Gyenge minőség">Gyenge minőség</option>
-                                                <option value="Nem értek a témához">Nem értek a témához</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm font-bold text-gray-700 mb-1">Mire használnád
-                                                elsősorban?</label>
-                                            <div class="space-y-1">
-                                                <label class="flex items-center gap-2 text-sm text-gray-600">
-                                                    <input type="checkbox" name="usage[]"
-                                                        value="Poszt gyártás és publikálás"
-                                                        class="rounded text-primary focus:ring-primary">
-                                                    Poszt gyártás és publikálás
-                                                </label>
-                                                <label class="flex items-center gap-2 text-sm text-gray-600">
-                                                    <input type="checkbox" name="usage[]"
-                                                        value="Facebook/Insta hirdetés gyártás"
-                                                        class="rounded text-primary focus:ring-primary">
-                                                    Facebook/Insta hirdetés gyártás
-                                                </label>
-                                                <label class="flex items-center gap-2 text-sm text-gray-600">
-                                                    <input type="checkbox" name="usage[]" value="Hírlevél gyártás"
-                                                        class="rounded text-primary focus:ring-primary">
-                                                    Hírlevél gyártás
-                                                </label>
-                                            </div>
-                                        </div>
 
                                         <div class="flex items-start gap-2 text-xs text-gray-500 my-2">
                                             <input type="checkbox" id="privacy" required
@@ -311,7 +260,7 @@
                                         </div>
 
                                         <div class="flex gap-3 mt-4">
-                                            <button type="button" onclick="nextStep(2)"
+                                            <button type="button" onclick="nextStep(1)"
                                                 class="flex-shrink-0 flex items-center justify-center rounded-lg h-12 px-4 border-2 border-gray-300 text-gray-600 text-base font-bold hover:bg-gray-50 transition-all">
                                                 <span class="material-symbols-outlined text-base mr-1">arrow_back</span>
                                                 Vissza
@@ -810,8 +759,9 @@
             // Check disqualifying conditions
             const isDisqualified =
                 webshop === 'Nem, más típusú vállalkozásom van' ||
-                level === 'Nincs semmi tudásunk' ||
-                role === 'Én (egyéni vállalkozóként)';
+                level === 'Egyáltalán nem értünk semmit a témához' ||
+                role === 'Belsős marketing csapat' ||
+                role === 'Ügynökség';
 
             if (isDisqualified) {
                 nextStep('rejected');
@@ -885,9 +835,7 @@
                     source_url: window.location.href,
                     has_webshop: cleanData['has_webshop'],
                     marketing_level: cleanData['marketing_level'],
-                    marketing_role: cleanData['marketing_role'],
-                    pain_point: cleanData['pain_point'],
-                    usage: Array.isArray(cleanData['usage[]']) ? cleanData['usage[]'].join(', ') : cleanData['usage[]']
+                    marketing_role: cleanData['marketing_role']
                 };
 
                 // Prepare formsubmit payload
@@ -895,11 +843,6 @@
                 formsubmitData['_subject'] = customSubject;
                 formsubmitData['_captcha'] = 'false';
                 formsubmitData['_template'] = 'table';
-
-                if (Array.isArray(formsubmitData['usage[]'])) {
-                    formsubmitData['usage'] = formsubmitData['usage[]'].join(', ');
-                    delete formsubmitData['usage[]'];
-                }
 
                 // Send BOTH requests in parallel using Promise.allSettled
                 // This ensures both get a chance to complete before redirect
