@@ -113,6 +113,50 @@
         .pulse-dot {
             animation: pulse-soft 2s ease-in-out infinite;
         }
+
+        /* Early bird progress bar */
+        @keyframes urgency-pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(132, 32, 207, 0.25);
+            }
+
+            50% {
+                box-shadow: 0 0 20px 4px rgba(132, 32, 207, 0.15);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .early-bird-card {
+            animation: urgency-pulse 3s ease-in-out infinite;
+        }
+
+        .early-bird-bar {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .early-bird-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2.5s ease-in-out infinite;
+        }
     </style>
 </head>
 
@@ -149,21 +193,7 @@
 
                     <!-- Content -->
                     <div class="flex flex-col gap-7 text-left">
-                        <div class="flex flex-wrap gap-2.5">
-                            <div
-                                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-primary/10 to-purple-100 dark:from-primary/20 dark:to-purple-900/30 w-fit border border-primary/15 dark:border-primary/25">
-                                <span class="w-2 h-2 rounded-full bg-accent pulse-dot"></span>
-                                <span
-                                    class="text-xs font-bold text-primary-text dark:text-purple-300 uppercase tracking-wider">🚀
-                                    AI tartalomgyártás webshopoknak</span>
-                            </div>
-                            <div
-                                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/40 dark:to-orange-900/30 w-fit border border-red-200/80 dark:border-red-800">
-                                <span class="material-symbols-outlined text-red-500 text-[18px]">videocam</span>
-                                <span class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">
-                                    + Videó generálás</span>
-                            </div>
-                        </div>
+
 
                         <h1
                             class="text-primary-text text-4xl md:text-[2.85rem] lg:text-5xl font-extrabold leading-[1.08] tracking-[-0.03em]">
@@ -198,11 +228,42 @@
                                 <span>Több látogató és vásárló a webshopodban, <strong>kevesebb ráfordított
                                         munkaórával</strong></span>
                             </li>
-                            <li class="flex items-start gap-2.5">
-                                <span class="material-symbols-outlined text-primary text-[22px]">check_circle</span>
-                                <span>Olyan marketing eredmények, amihez eddig ügynökségre volt szükség</span>
-                            </li>
                         </ul>
+
+                        <!-- Early Bird Urgency Slider -->
+                        <div id="earlyBirdCard"
+                            class="early-bird-card mt-4 rounded-xl border border-purple-200/60 dark:border-purple-700/40 bg-gradient-to-br from-white via-purple-50/60 to-orange-50/40 dark:from-gray-800 dark:via-purple-900/20 dark:to-gray-800 p-4 md:p-5 cursor-pointer transition-transform hover:scale-[1.02]"
+                            onclick="document.getElementById('hero').querySelector('form')?.scrollIntoView({behavior:'smooth',block:'center'})">
+                            <div class="flex items-center justify-between mb-2.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[20px]"
+                                        style="color: #8420cf;">local_fire_department</span>
+                                    <span
+                                        class="text-sm font-extrabold text-gray-800 dark:text-white uppercase tracking-wide">Kedvezményes
+                                        előfizetés</span>
+                                </div>
+                                <div
+                                    class="flex items-center gap-1.5 bg-white/80 dark:bg-gray-700/60 rounded-full px-2.5 py-1 border border-gray-200/60 dark:border-gray-600">
+                                    <span class="text-xs font-bold text-gray-500 dark:text-gray-300">Foglalt:</span>
+                                    <span id="earlyBirdCount" class="text-lg font-extrabold leading-none"
+                                        style="color: #d97706;">25</span>
+                                    <span class="text-xs font-bold text-gray-400">/</span>
+                                    <span class="text-xs font-bold text-gray-500 dark:text-gray-300">40</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-3 font-medium">Csak a korai
+                                regisztrálóknak – amint betelik, az ár növekszik!</p>
+                            <div class="w-full h-3 rounded-full bg-gray-200/80 dark:bg-gray-700 overflow-hidden">
+                                <div id="earlyBirdBar"
+                                    class="early-bird-bar h-full rounded-full transition-all duration-700 ease-out"
+                                    style="width: 62.5%; background: linear-gradient(90deg, #f59e0b, #ef4444);"></div>
+                            </div>
+                            <div class="flex justify-between mt-1.5">
+                                <span class="text-[10px] font-bold text-green-500/80">Elérhető</span>
+                                <span id="earlyBirdRemaining" class="text-[10px] font-bold text-red-500/80">Már csak 15
+                                    hely!</span>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Form Container -->
@@ -1117,6 +1178,54 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        // Early Bird Dynamic Color Logic
+        (function () {
+            const current = 25;
+            const max = 40;
+            const ratio = current / max; // 0.625
+
+            // Color interpolation: green(0) -> amber(0.5) -> red(1)
+            function getBarColor(r) {
+                if (r <= 0.5) {
+                    // green to amber
+                    const t = r / 0.5;
+                    const rr = Math.round(34 + t * (245 - 34));
+                    const gg = Math.round(197 + t * (158 - 197));
+                    const bb = Math.round(94 + t * (11 - 94));
+                    return `rgb(${rr},${gg},${bb})`;
+                } else {
+                    // amber to red
+                    const t = (r - 0.5) / 0.5;
+                    const rr = Math.round(245 + t * (239 - 245));
+                    const gg = Math.round(158 + t * (68 - 158));
+                    const bb = Math.round(11 + t * (68 - 11));
+                    return `rgb(${rr},${gg},${bb})`;
+                }
+            }
+
+            const startColor = getBarColor(Math.max(0, ratio - 0.15));
+            const endColor = getBarColor(ratio);
+
+            const bar = document.getElementById('earlyBirdBar');
+            if (bar) {
+                bar.style.width = (ratio * 100) + '%';
+                bar.style.background = `linear-gradient(90deg, ${startColor}, ${endColor})`;
+            }
+
+            const countEl = document.getElementById('earlyBirdCount');
+            if (countEl) {
+                countEl.style.color = endColor;
+            }
+
+            const remaining = max - current;
+            const remainingEl = document.getElementById('earlyBirdRemaining');
+            if (remainingEl) {
+                remainingEl.textContent = remaining <= 5 ? `Utolsó ${remaining} hely!` : `Már csak ${remaining} hely!`;
+            }
+        })();
     </script>
     <script src="assets/cookie.js"></script>
 </body>
