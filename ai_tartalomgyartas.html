@@ -4,11 +4,79 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>AI Tartalomgyártás Webshopoknak - Digitallwork.hu</title>
+    <title>AI Tartalomgyártás Webshopoknak - Content Ninja.hu</title>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700;900&amp;display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* Custom Web App Flat Design Adjustments */
+        body {
+            background-color: #f8f9fb;
+            color: #4a4a68;
+            letter-spacing: -0.01em;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #1e1e2f;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+        }
+
+        .rounded-16 {
+            border-radius: 16px;
+        }
+
+        .rounded-10 {
+            border-radius: 10px;
+        }
+
+        .flat-shadow {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .icon-box {
+            background-color: rgba(108, 92, 231, 0.1);
+            color: #6c5ce7;
+            border-radius: 16px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-primary {
+            background-color: #6c5ce7;
+            color: white;
+            font-weight: 600;
+            padding: 14px 28px;
+            border-radius: 10px;
+            border: none;
+            transition: background 0.2s ease;
+        }
+
+        .cta-primary:hover {
+            background-color: #5a4bd6;
+        }
+
+        .cta-secondary {
+            background-color: transparent;
+            border: 1.5px solid #6c5ce7;
+            color: #6c5ce7;
+            padding: 14px 28px;
+            border-radius: 10px;
+            transition: background 0.2s ease;
+            font-weight: 600;
+        }
+
+        .cta-secondary:hover {
+            background-color: rgba(108, 92, 231, 0.08);
+        }
+    </style>
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
@@ -39,19 +107,28 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#8420cf",
-                        "primary-text": "#8421D1",
-                        "accent": "#70E2D9",
-                        "accent-foreground": "#151117",
-                        "background-light": "#ffffff",
-                        "background-dark": "#1a1a1a",
-                        "secondary-bg": "#f5f5f5",
+                        primary: "#6c5ce7",
+                        "primary-hover": "#5a4bd6",
+                        dark: "#1e1e2f",
+                        body: "#4a4a68",
+                        light: "#f8f9fb",
+                        card: "#ffffff",
+                        success: "#22c55e",
+                        border: "#e8e8ef",
+                        muted: "#9090a7",
                     },
                     fontFamily: {
-                        "display": ["Manrope", "sans-serif"],
-                        "body": ["Manrope", "sans-serif"],
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
                     },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                    boxShadow: {
+                        card: "0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03)",
+                        "card-hover": "0 4px 6px rgba(0,0,0,0.05), 0 10px 24px rgba(0,0,0,0.08)"
+                    },
+                    letterSpacing: {
+                        "heading": "-0.02em",
+                        "label": "0.05em"
+                    }
                 },
             },
         }
@@ -160,16 +237,14 @@
     </style>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark text-[#151117] dark:text-white font-display overflow-x-hidden antialiased">
+<body class="bg-light  text-dark  font-display overflow-x-hidden antialiased">
     <div class="relative flex min-h-screen w-full flex-col">
 
         <!-- 0. Header (Minimalist) -->
-        <header
-            class="border-b border-solid border-b-[#f3f0f4] bg-white/90 backdrop-blur-md dark:bg-background-dark/90 sticky top-0 z-50 transition-all">
-            <div class="max-w-[1240px] mx-auto px-4 md:px-10 py-4 flex items-center justify-between whitespace-nowrap">
-                <div class="flex items-center gap-3 text-[#151117] dark:text-white">
-                    <img src="assets/logo.png" alt="Digitallwork Logo" class="h-10 w-auto object-contain">
+        <header class="border-b border-solid border-b-[#f3f0f4] bg-card   sticky top-0 z-50 transition-all">
+            <div class="max-w-[1200px] mx-auto px-4 md:px-10 py-4 flex items-center justify-between whitespace-nowrap">
+                <div class="flex items-center gap-3 text-dark ">
+                    <img src="assets/logo.webp" alt="Content Ninja Logo" class="h-14 md:h-16 w-auto object-contain">
                 </div>
                 <div class="flex flex-1 justify-end gap-8">
                     <!-- Navigation removed for conversion focus -->
@@ -179,39 +254,36 @@
 
         <!-- 1. Hero + Jelentkezési űrlap -->
         <section id="hero"
-            class="relative flex flex-col justify-center py-14 md:py-24 px-4 md:px-10 lg:px-40 bg-gradient-to-b from-white via-white to-purple-50/40 dark:from-background-dark dark:via-background-dark dark:to-purple-950/20 overflow-hidden">
+            class="relative flex flex-col justify-center py-[80px] md:py-24 px-4 md:px-10 lg:px-40       dark: overflow-hidden">
             <!-- Decorative blobs -->
             <div
-                class="hero-blob absolute top-[-80px] right-[-60px] w-[420px] h-[420px] bg-gradient-to-br from-primary/8 to-accent/6 rounded-full blur-[120px] pointer-events-none">
+                class="hero-blob absolute top-[-80px] right-[-60px] w-[420px] h-[420px] r rounded-full  pointer-events-none">
             </div>
             <div
-                class="hero-blob-2 absolute bottom-[-60px] left-[-80px] w-[350px] h-[350px] bg-gradient-to-tr from-orange-400/6 to-primary/8 rounded-full blur-[100px] pointer-events-none">
+                class="hero-blob-2 absolute bottom-[-60px] left-[-80px] w-[350px] h-[350px]   rounded-full  pointer-events-none">
             </div>
 
-            <div class="max-w-[1240px] mx-auto w-full z-10">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div class="max-w-[1200px] mx-auto w-full z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center">
 
                     <!-- Content -->
                     <div class="flex flex-col gap-7 text-left">
 
 
                         <h1
-                            class="text-primary-text text-4xl md:text-[2.85rem] lg:text-5xl font-extrabold leading-[1.08] tracking-[-0.03em]">
-                            <span
-                                class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-red-500 to-orange-500">Automatizáld
+                            class="text-primary text-4xl md:text-[2.85rem] lg:text-5xl font-bold leading-[1.08] tracking-[-0.03em]">
+                            <span class="text-primary  ">Automatizáld
                                 be</span> a webshopod közösségi média
                             posztolását
                         </h1>
-                        <p
-                            class="text-gray-600 dark:text-gray-300 text-[1.1rem] font-medium leading-relaxed max-w-[520px]">
+                        <p class="text-body  text-[1.1rem] font-medium leading-relaxed max-w-[520px]">
                             Változtasd webshopod termékeit azonnal megosztható social média tartalommá – az AI szöveget
-                            ír, képet szerkeszt, <span
-                                class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">videót
+                            ír, képet szerkeszt, <span class="font-bold text-primary  ">videót
                                 generál</span> és posztol is
                             helyetted.
                         </p>
 
-                        <ul class="space-y-3.5 text-gray-700 dark:text-gray-300">
+                        <ul class="space-y-3.5 text-body ">
                             <li class="flex items-start gap-2.5">
                                 <span class="material-symbols-outlined text-primary text-[22px]">check_circle</span>
                                 <span><strong>Nem kell többé órákat töltened</strong> posztok írásával és képek
@@ -232,35 +304,33 @@
 
                         <!-- Early Bird Urgency Slider -->
                         <div id="earlyBirdCard"
-                            class="early-bird-card mt-4 rounded-xl border border-purple-200/60 dark:border-purple-700/40 bg-gradient-to-br from-white via-purple-50/60 to-orange-50/40 dark:from-gray-800 dark:via-purple-900/20 dark:to-gray-800 p-4 md:p-5 cursor-pointer transition-transform hover:scale-[1.02]"
+                            class="mt-2 rounded-[16px] border-2 border-primary/20 bg-card p-5 cursor-pointer shadow-card hover:shadow-card-hover hover:border-primary transition-all"
                             onclick="document.getElementById('hero').querySelector('form')?.scrollIntoView({behavior:'smooth',block:'center'})">
-                            <div class="flex items-center justify-between mb-2.5">
+                            <div class="flex items-center justify-between mb-3">
                                 <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-[20px]"
-                                        style="color: #8420cf;">local_fire_department</span>
-                                    <span
-                                        class="text-sm font-extrabold text-gray-800 dark:text-white uppercase tracking-wide">Kedvezményes
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                        <span class="material-symbols-outlined text-[18px]">bolt</span>
+                                    </div>
+                                    <span class="text-sm font-bold text-dark tracking-wide">Kedvezményes
                                         előfizetés</span>
                                 </div>
                                 <div
-                                    class="flex items-center gap-1.5 bg-white/80 dark:bg-gray-700/60 rounded-full px-2.5 py-1 border border-gray-200/60 dark:border-gray-600">
-                                    <span class="text-xs font-bold text-gray-500 dark:text-gray-300">Foglalt:</span>
-                                    <span id="earlyBirdCount" class="text-lg font-extrabold leading-none"
-                                        style="color: #d97706;">26</span>
-                                    <span class="text-xs font-bold text-gray-400">/</span>
-                                    <span class="text-xs font-bold text-gray-500 dark:text-gray-300">40</span>
+                                    class="flex items-center gap-1.5 bg-light rounded-md px-2.5 py-1 border border-border">
+                                    <span class="text-xs font-bold text-muted">Foglalt:</span>
+                                    <span id="earlyBirdCount" class="text-sm font-bold text-primary">26</span>
+                                    <span class="text-xs font-bold text-muted">/ 40</span>
                                 </div>
                             </div>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-3 font-medium">Csak a korai
-                                regisztrálóknak – amint betelik, az ár növekszik!</p>
-                            <div class="w-full h-3 rounded-full bg-gray-200/80 dark:bg-gray-700 overflow-hidden">
-                                <div id="earlyBirdBar"
-                                    class="early-bird-bar h-full rounded-full transition-all duration-700 ease-out"
-                                    style="width: 62.5%; background: linear-gradient(90deg, #f59e0b, #ef4444);"></div>
+                            <div class="w-full h-2 rounded-full bg-light overflow-hidden border border-border">
+                                <div id="earlyBirdBarNew"
+                                    class="h-full rounded-full bg-primary transition-all duration-700 ease-out"
+                                    style="width: 62.5%;"></div>
                             </div>
-                            <div class="flex justify-between mt-1.5">
-                                <span class="text-[10px] font-bold text-green-500/80">Elérhető</span>
-                                <span id="earlyBirdRemaining" class="text-[10px] font-bold text-red-500/80">Már csak 15
+                            <div class="flex justify-between mt-2">
+                                <p class="text-[11px] text-muted font-medium">Csak a korai regisztrálóknak, fix áron!
+                                </p>
+                                <span id="earlyBirdRemaining" class="text-[11px] font-bold text-primary">Már csak 15
                                     hely!</span>
                             </div>
                         </div>
@@ -269,15 +339,15 @@
                     <!-- Form Container -->
                     <div class="w-full relative">
                         <div
-                            class="relative w-full rounded-2xl overflow-hidden bg-white/70 backdrop-blur-2xl border border-purple-100/60 dark:border-gray-700 shadow-[0_8px_60px_-12px_rgba(132,32,207,0.15)] p-6 md:p-8">
-                            <h3 class="text-2xl font-bold text-center mb-2 text-primary-text">Jelentkezés online
+                            class="relative w-full rounded-[16px] overflow-hidden bg-card  border border-border  shadow-card hover:shadow-card-hover transition-all p-6 md:p-8">
+                            <h3 class="text-2xl font-bold text-center mb-2 text-primary">Jelentkezés online
                                 bemutatóra
                             </h3>
                             <div
-                                class="flex items-center gap-2.5 justify-center bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/15 border border-amber-200/70 dark:border-amber-700/40 rounded-lg px-4 py-3 mb-6">
-                                <span class="material-symbols-outlined text-amber-500 text-[20px] shrink-0">info</span>
-                                <p class="text-sm text-gray-600 dark:text-gray-300"><strong
-                                        class="font-bold text-gray-800 dark:text-white">Közvetlen kipróbálásra nincs
+                                class="flex items-center gap-2.5 justify-center dark: dark: border border-border  rounded-lg px-4 py-3 mb-6">
+                                <span class="material-symbols-outlined text-primary text-[20px] shrink-0">info</span>
+                                <p class="text-sm text-body "><strong class="font-bold text-dark ">Közvetlen
+                                        kipróbálásra nincs
                                         lehetőség</strong> – de egy online megbeszélés keretében bemutatjuk neked a
                                     rendszert részletesen, akár a te saját példáiddal.</p>
                             </div>
@@ -289,10 +359,10 @@
                                 <div class="form-step active" data-step="1">
                                     <div class="space-y-4">
                                         <div>
-                                            <label class="block text-sm font-bold text-gray-700 mb-1">Van webshopod /
+                                            <label class="block text-sm font-bold text-body mb-1">Van webshopod /
                                                 online áruházad?</label>
                                             <select name="has_webshop" id="hasWebshop"
-                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
+                                                class="w-full rounded-lg border-border focus:border-primary focus:ring-primary shadow-card hover:shadow-card-hover transition-all">
                                                 <option value="" disabled selected>Válassz...</option>
                                                 <option value="Igen, webshopot üzemeltetek">Igen, webshopot üzemeltetek
                                                 </option>
@@ -301,10 +371,10 @@
                                             </select>
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-bold text-gray-700 mb-1">Milyen szinten van
+                                            <label class="block text-sm font-bold text-body mb-1">Milyen szinten van
                                                 a céged a marketingben?</label>
                                             <select name="marketing_level" id="marketingLevel"
-                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
+                                                class="w-full rounded-lg border-border focus:border-primary focus:ring-primary shadow-card hover:shadow-card-hover transition-all">
                                                 <option value="" disabled selected>Válassz...</option>
                                                 <option value="Egyáltalán nem értünk semmit a témához">Egyáltalán nem
                                                     értünk semmit a témához</option>
@@ -315,10 +385,10 @@
                                             </select>
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-bold text-gray-700 mb-1">Ki csinálja a
+                                            <label class="block text-sm font-bold text-body mb-1">Ki csinálja a
                                                 marketinget?</label>
                                             <select name="marketing_role" id="marketingRole"
-                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
+                                                class="w-full rounded-lg border-border focus:border-primary focus:ring-primary shadow-card hover:shadow-card-hover transition-all">
                                                 <option value="" disabled selected>Válassz...</option>
                                                 <option value="Én (egyéni vállalkozóként)">Én (egyéni vállalkozóként)
                                                 </option>
@@ -328,10 +398,10 @@
                                             </select>
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-bold text-gray-700 mb-1">Ha a bemutató
+                                            <label class="block text-sm font-bold text-body mb-1">Ha a bemutató
                                                 alapján tetszik, mikor tudnád elkezdeni használni a szoftvert?</label>
                                             <select name="timing" id="timing"
-                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm">
+                                                class="w-full rounded-lg border-border focus:border-primary focus:ring-primary shadow-card hover:shadow-card-hover transition-all">
                                                 <option value="" disabled selected>Válassz...</option>
                                                 <option value="Azonnal">Azonnal</option>
                                                 <option value="1 hónapon belül">1 hónapon belül</option>
@@ -340,7 +410,7 @@
                                             </select>
                                         </div>
                                         <button type="button" onclick="qualifyAndNext()"
-                                            class="w-full mt-4 flex items-center justify-center rounded-lg h-12 bg-accent text-accent-foreground text-base font-bold shadow-md hover:brightness-95 transition-all">
+                                            class="w-full mt-4 flex items-center justify-center rounded-lg h-12 cta-primary w-full:shadow-card-hover transition-all hover:brightness-95 transition-all">
                                             Tovább
                                         </button>
                                     </div>
@@ -350,11 +420,11 @@
                                 <div class="form-step" data-step="rejected">
                                     <div class="text-center py-6 space-y-4">
                                         <div
-                                            class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
-                                            <span class="material-symbols-outlined text-orange-500 text-3xl">info</span>
+                                            class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                                            <span class="material-symbols-outlined text-primary text-3xl">info</span>
                                         </div>
-                                        <h4 class="text-xl font-bold text-gray-800">Köszönjük az érdeklődésedet!</h4>
-                                        <p class="text-gray-600 leading-relaxed max-w-[400px] mx-auto">
+                                        <h4 class="text-xl font-bold text-dark">Köszönjük az érdeklődésedet!</h4>
+                                        <p class="text-body leading-relaxed max-w-[400px] mx-auto">
                                             A megadott adatok alapján úgy látjuk, hogy nem lenne a platformunk megfelelő
                                             számomdra. Így nem is szeretnénk az idődet húzni, megértésed köszönjük!
                                         </p>
@@ -365,44 +435,43 @@
                                 <div class="form-step" data-step="2">
                                     <div class="space-y-4">
                                         <div>
-                                            <label class="block text-sm font-bold text-gray-700 mb-1">Név</label>
+                                            <label class="block text-sm font-bold text-body mb-1">Név</label>
                                             <input type="text" name="name" required
-                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm"
+                                                class="w-full rounded-lg border-border focus:border-primary focus:ring-primary shadow-card hover:shadow-card-hover transition-all"
                                                 placeholder="pl. Kovács János">
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-bold text-gray-700 mb-1">Céges email
+                                            <label class="block text-sm font-bold text-body mb-1">Céges email
                                                 cím</label>
                                             <input type="email" name="email" required
-                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm"
+                                                class="w-full rounded-lg border-border focus:border-primary focus:ring-primary shadow-card hover:shadow-card-hover transition-all"
                                                 placeholder="pl. janos@ceg.hu">
                                         </div>
                                         <div>
-                                            <label
-                                                class="block text-sm font-bold text-gray-700 mb-1">Telefonszám</label>
+                                            <label class="block text-sm font-bold text-body mb-1">Telefonszám</label>
                                             <input type="tel" name="phone" required
-                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary shadow-sm"
+                                                class="w-full rounded-lg border-border focus:border-primary focus:ring-primary shadow-card hover:shadow-card-hover transition-all"
                                                 placeholder="+36 30 123 4567">
                                         </div>
 
-                                        <div class="flex items-start gap-2 text-xs text-gray-500 my-2">
+                                        <div class="flex items-start gap-2 text-xs text-muted my-2">
                                             <input type="checkbox" id="privacy" required
                                                 class="mt-1 rounded text-primary focus:ring-primary">
                                             <label for="privacy">
                                                 Az <a
-                                                    href="https://digitallwork.hu/adatkezelesi-tajekoztato/marko-tamas-ev/"
+                                                    href="https://contentninja.hu/adatkezelesi-tajekoztato/marko-tamas-ev/"
                                                     target="_blank" class="underline hover:text-primary">Adatkezelési
                                                     Tájékoztatóban</a> foglaltakat elolvastam, megértettem és tudomásul
                                                 vettem.
                                             </label>
                                         </div>
 
-                                        <div class="flex items-start gap-2 text-xs text-gray-500 my-2">
+                                        <div class="flex items-start gap-2 text-xs text-muted my-2">
                                             <input type="checkbox" id="newsletter" name="newsletter"
                                                 class="mt-1 rounded text-primary focus:ring-primary">
                                             <label for="newsletter">
                                                 Érdekelnek hasonló izgalmas tartalmak! Feliratkozom a hírlevélre.
-                                                (<a href="https://digitallwork.hu/adatkezelesi-tajekoztato/"
+                                                (<a href="https://digitallwork.hu/adatkezelesi-tajekoztato/marko-tamas-ev/"
                                                     target="_blank" class="underline hover:text-primary">Adatkezelési
                                                     tájékoztató</a>)
                                             </label>
@@ -410,12 +479,12 @@
 
                                         <div class="flex gap-3 mt-4">
                                             <button type="button" onclick="nextStep(1)"
-                                                class="flex-shrink-0 flex items-center justify-center rounded-lg h-12 px-4 border-2 border-gray-300 text-gray-600 text-base font-bold hover:bg-gray-50 transition-all">
+                                                class="flex-shrink-0 flex items-center justify-center rounded-lg h-12 px-4 border-2 border-border text-body text-base font-bold hover:bg-light transition-all">
                                                 <span class="material-symbols-outlined text-base mr-1">arrow_back</span>
                                                 Vissza
                                             </button>
                                             <button type="submit" id="submitBtn"
-                                                class="flex-1 flex items-center justify-center rounded-lg h-12 bg-accent text-accent-foreground text-base font-bold shadow-md hover:brightness-95 transition-all">
+                                                class="flex-1 flex items-center justify-center rounded-lg h-12 cta-primary w-full:shadow-card-hover transition-all hover:brightness-95 transition-all">
                                                 Tovább az időpontfoglaláshoz!
                                             </button>
                                         </div>
@@ -429,47 +498,45 @@
         </section>
 
         <!-- Testimonials -->
-        <section class="py-16 md:py-20 bg-white dark:bg-background-dark text-[#151117] dark:text-white">
-            <div class="max-w-[1240px] mx-auto px-4 md:px-10">
+        <section class="bg-card  py-[100px] text-dark ">
+            <div class="max-w-[1200px] mx-auto px-4 md:px-10">
                 <div class="text-center max-w-[800px] mx-auto mb-12">
-                    <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Mit mondanak rólunk ügyfeleink?</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Mit mondanak rólunk ügyfeleink?</h2>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
                     <!-- Testimonial 1 -->
                     <div
-                        class="flex flex-col bg-secondary-bg dark:bg-background-dark/50 p-8 rounded-2xl border border-gray-200/60 dark:border-gray-700/60 shadow-sm relative">
+                        class="flex flex-col bg-light  p-8 rounded-[16px] border border-border  shadow-card hover:shadow-card-hover transition-all relative">
                         <div class="mb-4">
-                            <span class="material-symbols-outlined text-primary/40 text-5xl">format_quote</span>
+                            <span class="material-symbols-outlined text-primary/10 text-[64px]">format_quote</span>
                         </div>
                         <div class="relative z-10 flex-1">
-                            <p
-                                class="text-lg md:text-xl text-gray-700 dark:text-gray-300 italic mb-8 font-medium leading-relaxed">
+                            <p class="text-lg md:text-xl text-body  italic mb-8 font-medium leading-relaxed">
                                 „Rengeteg időt spórol azzal, hogy terméklink alapján magától generál szöveget, képet és
                                 automatikusan posztol is. Nagy segítség!”
                             </p>
                         </div>
                         <div class="flex items-center gap-4 mt-auto relative z-10">
                             <div
-                                class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-xl uppercase">
+                                class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl uppercase shadow-card">
                                 Sz
                             </div>
                             <div>
-                                <p class="font-bold text-gray-900 dark:text-white text-base">Szabad Mária</p>
-                                <p class="text-sm text-gray-500 font-medium">Károlyi-plast webáruház</p>
+                                <p class="font-bold text-dark  text-base">Szabad Mária</p>
+                                <p class="text-sm text-muted font-medium">Károlyi-plast webáruház</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Testimonial 2 -->
                     <div
-                        class="flex flex-col bg-secondary-bg dark:bg-background-dark/50 p-8 rounded-2xl border border-gray-200/60 dark:border-gray-700/60 shadow-sm relative">
+                        class="flex flex-col bg-light  p-8 rounded-[16px] border border-border  shadow-card hover:shadow-card-hover transition-all relative">
                         <div class="mb-4">
-                            <span class="material-symbols-outlined text-primary/40 text-5xl">format_quote</span>
+                            <span class="material-symbols-outlined text-primary/10 text-[64px]">format_quote</span>
                         </div>
                         <div class="relative z-10 flex-1">
-                            <p
-                                class="text-lg md:text-xl text-gray-700 dark:text-gray-300 italic mb-8 font-medium leading-relaxed">
+                            <p class="text-lg md:text-xl text-body  italic mb-8 font-medium leading-relaxed">
                                 „Kevés időm jut marketingre, de ezzel mégis tudok rendszeresen posztolni. Tömegesen
                                 generál tartalmakat, témákat is javasol magától, a videós funkciói pedig egyre jobbak.
                                 Komoly időmegtakarítás.”
@@ -477,12 +544,12 @@
                         </div>
                         <div class="flex items-center gap-4 mt-auto relative z-10">
                             <div
-                                class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-xl uppercase">
+                                class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl uppercase shadow-card">
                                 L
                             </div>
                             <div>
-                                <p class="font-bold text-gray-900 dark:text-white text-base">Luca Márió</p>
-                                <p class="text-sm text-gray-500 font-medium">PanDani.hu Játékbolt és webshop</p>
+                                <p class="font-bold text-dark  text-base">Luca Márió</p>
+                                <p class="text-sm text-muted font-medium">PanDani.hu Játékbolt és webshop</p>
                             </div>
                         </div>
                     </div>
@@ -491,21 +558,14 @@
         </section>
 
         <!-- 2. Value Prop -->
-        <section id="solutions" class="py-20 bg-secondary-bg dark:bg-background-dark/50">
-            <div class="max-w-[1240px] mx-auto px-4 md:px-10">
-                <div class="text-center max-w-[800px] mx-auto mb-16">
-                    <h2 class="text-3xl md:text-5xl font-extrabold mb-6">Több látogató, több vásárlás, kevesebb
-                        adminisztráció.</h2>
-                    <p class="text-lg text-gray-600">
-                        Egy rendszer, ami automatizálja a webshopod tartalomgyártását – így neked csak a rendelések
-                        teljesítésével kell foglalkoznod.
-                    </p>
-                </div>
+        <section id="solutions" class="bg-[#f8f9fb]  py-16 md:py-[120px] ">
+            <div class="max-w-[1200px] mx-auto px-4 md:px-10">
+
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div>
+                    <div class=" order-1 md:order-2">
                         <div
-                            class="relative w-full aspect-square rounded-xl overflow-hidden group shadow-lg border border-gray-200 dark:border-gray-700 bg-black/50">
+                            class="relative w-full aspect-square rounded-[16px] overflow-hidden group shadow-card hover:shadow-card-hover transition-all border border-border  bg-black/50">
                             <video class="w-full h-full object-cover" controls autoplay loop muted playsinline>
                                 <source src="assets/video-demo2.mp4" type="video/mp4">
                                 A böngésződ nem támogatja a videó lejátszást.
@@ -513,35 +573,53 @@
                             <div
                                 class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
                                 <span
-                                    class="material-symbols-outlined text-white/80 text-6xl drop-shadow-lg">play_circle</span>
+                                    class="material-symbols-outlined text-muted text-6xl drop-shadow-card hover:shadow-card-hover transition-all">play_circle</span>
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col justify-center">
-                        <h3 class="text-2xl font-bold mb-4">Webshopra szabott hatékonyság</h3>
-                        <ul class="space-y-4">
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-primary shrink-0">edit_note</span>
-                                <span class="text-gray-700">A termékeidből (kép + leírás) automatikusan social media
-                                    posztot generál.</span>
+                    <div class="flex flex-col justify-center order-2 md:order-1">
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Hatékonyság
+                            ⚡</span>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-dark leading-tight">Webshopra szabott
+                            automatizáció</h2>
+                        <ul class="space-y-5 mb-8">
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">edit_note</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">A termékeidből (kép +
+                                    leírás) automatikusan social media posztot generál.</span>
                             </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-primary shrink-0">movie_filter</span>
-                                <span class="text-gray-700">Statikus képekből mozgó tartalom (Insta/Story).</span>
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">movie_filter</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Statikus képekből mozgó
+                                    tartalom (Insta/Story).</span>
                             </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-primary shrink-0">send</span>
-                                <span class="text-gray-700">Integráció: Egy kattintással publikálsz Facebookra, Instára,
-                                    LinkedInre.</span>
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">send</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Integráció: Egy
+                                    kattintással publikálsz különböző platformokra.</span>
                             </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-primary shrink-0">calendar_month</span>
-                                <span class="text-gray-700">Átlátható vizuális naptár, hogy lásd a stratégiát.</span>
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span
+                                        class="material-symbols-outlined text-primary text-[20px]">calendar_month</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Átlátható vizuális naptár,
+                                    hogy lásd a stratégiát.</span>
                             </li>
                         </ul>
-                        <div class="mt-8">
+                        <div>
                             <a href="#hero"
-                                class="inline-flex items-center justify-center rounded-lg h-12 px-8 bg-primary text-white font-bold shadow-md hover:bg-primary-text transition-all">
+                                class="inline-flex items-center justify-center rounded-lg h-14 px-8 cta-primary text-lg">
                                 Ez kell a webshopomnak!
                             </a>
                         </div>
@@ -551,46 +629,65 @@
         </section>
 
         <!-- New Feature: Video Content -->
-        <section class="py-20 bg-gray-900 text-white">
-            <div class="max-w-[1240px] mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <span class="text-accent font-bold tracking-wider uppercase text-sm mb-2 block">Újdonság
+        <section class="bg-card  py-16 md:py-[120px] ">
+            <div class="max-w-[1200px] mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="flex flex-col justify-center order-2 md:order-2">
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Újdonság
                             🔥</span>
-                        <h2 class="text-3xl md:text-5xl font-extrabold mb-6">Ütős videós tartalmak termékeidből</h2>
-                        <p class="text-gray-300 mb-6 text-lg">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-dark leading-tight">Ütős videós tartalmak
+                            termékeidből</h2>
+                        <p class="text-lg text-body mb-8 leading-relaxed">
                             A rendszerünk a meglévő <strong>termékleírásokból és termékképekből</strong> automatikusan
-                            dinamikus,
-                            azonnal megosztható videós tartalmakat generál.
+                            dinamikus, azonnal megosztható videós tartalmakat generál.
                         </p>
 
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-accent">check</span>
-                                <span>Termékleírás alapján generált szövegezés és forgatókönyv</span>
+                        <ul class="space-y-5 mb-8">
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">script</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Termékleírás alapján
+                                    generált szövegezés és forgatókönyv</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-accent">check</span>
-                                <span>Statikus termékfotókból mozgó animációk</span>
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">animation</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Statikus termékfotókból
+                                    mozgó animációk</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-accent">check</span>
-                                <span>Kameramozgások, zoom és effektek automatikusan</span>
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">movie</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Kameramozgások, zoom és
+                                    effektek automatikusan</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-accent">check</span>
-                                <span>Figyelemfelkeltő tartalom Instára, TikTokra és Storyba</span>
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span
+                                        class="material-symbols-outlined text-primary text-[20px]">smart_display</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Figyelemfelkeltő tartalom
+                                    Instára, TikTokra és Storyba</span>
                             </li>
                         </ul>
-                        <a href="#hero"
-                            class="inline-flex items-center justify-center rounded-lg h-12 px-8 bg-accent text-accent-foreground font-bold shadow-md hover:brightness-95 transition-all">
-                            Ezt látnom kell!
-                        </a>
+                        <div>
+                            <a href="#hero"
+                                class="inline-flex items-center justify-center rounded-lg h-14 px-8 cta-primary text-lg">
+                                Ezt látnom kell!
+                            </a>
+                        </div>
                     </div>
-                    <div>
+                    <div class=" order-1 md:order-1">
                         <!-- Video Player -->
                         <div
-                            class="relative w-full aspect-square rounded-xl overflow-hidden group shadow-lg border border-gray-700 bg-black/50">
+                            class="relative w-full aspect-square rounded-[16px] overflow-hidden group shadow-card hover:shadow-card-hover transition-all border border-border bg-black/50">
                             <video class="w-full h-full object-cover" controls autoplay loop muted playsinline>
                                 <source src="assets/video-demo.mp4" type="video/mp4">
                                 A böngésződ nem támogatja a videó lejátszást.
@@ -598,7 +695,7 @@
                             <div
                                 class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
                                 <span
-                                    class="material-symbols-outlined text-white/80 text-6xl drop-shadow-lg">play_circle</span>
+                                    class="material-symbols-outlined text-muted text-6xl drop-shadow-card hover:shadow-card-hover transition-all">play_circle</span>
                             </div>
                         </div>
                     </div>
@@ -607,137 +704,116 @@
         </section>
 
         <!-- 3. Scalability -->
-        <section class="py-20 bg-white">
-            <div class="max-w-[1240px] mx-auto px-4 md:px-10">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <section class="bg-[#f8f9fb]  py-16 md:py-[120px] ">
+            <div class="max-w-[1200px] mx-auto px-4 md:px-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                     <div class="flex flex-col justify-center order-2 md:order-1">
-                        <h3 class="text-2xl md:text-3xl font-bold mb-4">Skálázd a marketinged az árukészlettel együtt
-                        </h3>
-                        <ul class="space-y-4">
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-primary shrink-0">trending_up</span>
-                                <span class="text-gray-700">Akár 100 termékre is generálhatsz egyedi tartalmat percek
-                                    alatt.</span>
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Korlátlan
+                            Szintépés 📈</span>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-dark leading-tight">Skálázd a marketinged az
+                            árukészlettel együtt</h2>
+
+                        <ul class="space-y-5 mb-8">
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">trending_up</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Akár 100 termékre is
+                                    generálhatsz egyedi tartalmat percek alatt.</span>
                             </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-primary shrink-0">share</span>
-                                <span class="text-gray-700">Omnichannel jelenlét: Facebook, Instagram és LinkedIn
-                                    fedés.</span>
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">share</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Omnichannel jelenlét:
+                                    Facebook, Instagram és LinkedIn fedés.</span>
                             </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-primary shrink-0">groups</span>
-                                <span class="text-gray-700">Szegmentált ajánlatok visszatérő vásárlóknak és új
-                                    érdeklődőknek.</span>
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">groups</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Szegmentált ajánlatok
+                                    visszatérő vásárlóknak és új érdeklődőknek.</span>
                             </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-primary shrink-0">palette</span>
-                                <span class="text-gray-700">Figyelemfelkeltő termékfotók és életkép-generálás
-                                    stúdióbérlés nélkül.</span>
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">palette</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Figyelemfelkeltő
+                                    termékfotók és életkép-generálás stúdióbérlés nélkül.</span>
                             </li>
                         </ul>
-                        <div class="mt-8">
+                        <div>
                             <a href="#hero"
-                                class="inline-flex items-center justify-center rounded-lg h-12 px-8 bg-accent text-accent-foreground font-bold shadow-md hover:brightness-95 transition-all">
+                                class="inline-flex items-center justify-center rounded-lg h-14 px-8 cta-primary text-lg">
                                 Kérek egy demót!
                             </a>
                         </div>
                     </div>
-                    <div class="order-1 md:order-2">
+                    <div class=" order-1 md:order-2">
                         <img src="assets/skalazhato-marketing.jpg" alt="Skálázható marketing tartalom"
-                            class="w-full aspect-square rounded-xl shadow-lg object-cover">
+                            class="w-full aspect-square rounded-[16px] shadow-card hover:shadow-card-hover transition-all object-cover">
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- New Feature: AI Influencer -->
-        <section class="py-20 bg-secondary-bg dark:bg-background-dark/30 border-t border-gray-200 dark:border-gray-800">
-            <div class="max-w-[1240px] mx-auto px-4 md:px-10">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-                    <!-- Text Content -->
-                    <div class="flex flex-col justify-center order-2 md:order-1">
-                        <span class="text-accent font-bold tracking-wider uppercase text-sm mb-2 block">Forradalmi
-                            Újdonság 🔥</span>
-                        <h2 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">Saját <span
-                                class="text-primary">AI Influenszer</span> 0-24-ben.</h2>
-
-                        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-                            Nem kell modelleket fotóznod. Hozz létre egy brandazonos arcot, aki fáradhatatlanul gyártja
-                            a videós tartalmakat.
+        <section class="bg-card  py-16 md:py-[120px] ">
+            <div class="max-w-[1200px] mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class=" order-1 md:order-1">
+                        <img src="assets/teljes-automatizalas.jpg" alt="Teljes automatizálás folyamata"
+                            class="w-full aspect-square rounded-[16px] shadow-card hover:shadow-card-hover transition-all object-cover">
+                    </div>
+                    <div class="flex flex-col justify-center order-2 md:order-2">
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Határtalan
+                            Integráció ⚙️</span>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-dark leading-tight">Teljesen automata módon
+                            is tud működni</h2>
+                        <p class="text-lg text-body mb-8 leading-relaxed">
+                            Pont olyan, mintha egy ügynökséget bíznál meg, csak sokkal olcsóbb és kiszámíthatóbb. Állíts
+                            be magadnak önműködő automatizmusokat és bízd rá a teljes folyamatot az AI-ra:
                         </p>
 
-                        <ul class="space-y-6 mb-8">
+                        <ul class="space-y-5 mb-8">
                             <li class="flex items-start gap-4">
                                 <div
-                                    class="flex-shrink-0 w-12 h-12 rounded-xl bg-white shadow-sm border border-gray-100 flex items-center justify-center text-primary">
-                                    <span class="material-symbols-outlined text-2xl">face</span>
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">link</span>
                                 </div>
-                                <div>
-                                    <strong class="block text-gray-900 dark:text-white mb-1 text-lg">Állandó, ismert
-                                        arc</strong>
-                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Közvetlenül a webshopodból
+                                    gyűjt aktuális termékadatokat.</span>
                             </li>
                             <li class="flex items-start gap-4">
                                 <div
-                                    class="flex-shrink-0 w-12 h-12 rounded-xl bg-white shadow-sm border border-gray-100 flex items-center justify-center text-primary">
-                                    <span class="material-symbols-outlined text-2xl">schedule</span>
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">movie_filter</span>
                                 </div>
-                                <div>
-                                    <strong class="block text-gray-900 dark:text-white mb-1 text-lg">Non-stop
-                                        tartalomgyártás</strong>
-                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Szöveget ír, promóciós
+                                    képet szerkeszt hozzá, logózza, animációt csinál belőle.</span>
                             </li>
                             <li class="flex items-start gap-4">
                                 <div
-                                    class="flex-shrink-0 w-12 h-12 rounded-xl bg-white shadow-sm border border-gray-100 flex items-center justify-center text-primary">
-                                    <span class="material-symbols-outlined text-2xl">trending_up</span>
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span
+                                        class="material-symbols-outlined text-primary text-[20px]">schedule_send</span>
                                 </div>
-                                <div>
-                                    <strong class="block text-gray-900 dark:text-white mb-1 text-lg">Azonnali
-                                        trendreakció</strong>
-                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">A végeredményt
+                                    automatikusan beütemezi és publikálja.</span>
                             </li>
                         </ul>
-
                         <div>
                             <a href="#hero"
-                                class="inline-flex items-center justify-center rounded-lg h-14 px-8 bg-black text-white dark:bg-white dark:text-black font-bold text-lg shadow-xl hover:-translate-y-1 transition-transform">
-                                Érdekel!
+                                class="inline-flex items-center justify-center rounded-lg h-14 px-8 cta-primary text-lg">
+                                Automatizálni akarom a webshopom!
                             </a>
                         </div>
                     </div>
-
-                    <!-- Video (Right on Desktop) -->
-                    <div class="relative w-full max-w-[500px] mx-auto order-1 md:order-2">
-                        <div
-                            class="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-700 bg-gray-100 group">
-                            <video class="w-full h-full object-cover" controls autoplay loop muted playsinline>
-                                <source src="assets/video-demo3.mp4" type="video/mp4">
-                                A böngésződ nem támogatja a videó lejátszást.
-                            </video>
-                            <!-- Play Button Overlay -->
-                            <div
-                                class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
-                                <span
-                                    class="material-symbols-outlined text-white text-7xl drop-shadow-xl">play_circle</span>
-                            </div>
-                        </div>
-
-                        <!-- Floating Badge -->
-                        <div
-                            class="absolute -bottom-6 -left-6 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-xl flex items-center gap-3 animate-bounce-slow hidden md:flex border border-gray-100 dark:border-gray-700">
-                            <div
-                                class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                                <span class="material-symbols-outlined text-2xl">verified</span>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-500 font-bold uppercase tracking-wide">Elérhetőség</p>
-                                <p class="text-xl font-extrabold text-gray-900 dark:text-white">100%</p>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
@@ -746,77 +822,81 @@
         <!-- Examples section removed as per request -->
 
         <!-- 5. Features Grid -->
-        <section id="services" class="py-20 bg-white">
-            <div class="max-w-[1240px] mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl font-extrabold mb-4">Minden, ami egy sikeres webshop marketingjéhez kell</h2>
-                    <p class="text-gray-600">Egy egységes, automatizált rendszer, ami minden lépést lefed a
+        <section id="services" class="bg-[#f8f9fb]  py-16 md:py-[120px] ">
+            <div class="max-w-[1200px] mx-auto px-4">
+                <div class="text-center mb-10 md:mb-16">
+                    <h2 class="text-3xl font-bold mb-4">Minden, ami egy sikeres webshop marketingjéhez kell</h2>
+                    <p class="text-body">Egy egységes, automatizált rendszer, ami minden lépést lefed a
                         termékrögzítéstől a vevőszerzésig.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Feature 1: Termékleírásból tartalom -->
-                    <div class="p-6 border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="bg-[#ffffff] p-6 border border-border rounded-[16px] shadow-card hover:shadow-card-hover transition-all hover:shadow-card hover:shadow-card-hover transition-all transition-shadow">
                         <div
                             class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
                             <span class="material-symbols-outlined">edit_note</span>
                         </div>
                         <h3 class="font-bold text-xl mb-2">Termékleírásból tartalom</h3>
-                        <p class="text-gray-600">Az AI automatikusan kinyeri a webshopodból a termékadatokat, és vonzó,
+                        <p class="text-body">Az AI automatikusan kinyeri a webshopodból a termékadatokat, és vonzó,
                             vásárlásra ösztönző leírásokat, posztokat készít belőlük.</p>
                     </div>
 
                     <!-- Feature 2: Brandazonos & Logózott -->
-                    <div class="p-6 border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="bg-[#ffffff] p-6 border border-border rounded-[16px] shadow-card hover:shadow-card-hover transition-all hover:shadow-card hover:shadow-card-hover transition-all transition-shadow">
                         <div
                             class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
                             <span class="material-symbols-outlined">palette</span>
                         </div>
                         <h3 class="font-bold text-xl mb-2">Brandazonos & Logózott</h3>
-                        <p class="text-gray-600">Az AI megtanulja a márkád stílusát. A generált képekre automatikusan
+                        <p class="text-body">Az AI megtanulja a márkád stílusát. A generált képekre automatikusan
                             ráteszi a logódat.</p>
                     </div>
 
                     <!-- Feature 3: Automatikus publikálás -->
-                    <div class="p-6 border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="bg-[#ffffff] p-6 border border-border rounded-[16px] shadow-card hover:shadow-card-hover transition-all hover:shadow-card hover:shadow-card-hover transition-all transition-shadow">
                         <div
                             class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
                             <span class="material-symbols-outlined">send</span>
                         </div>
                         <h3 class="font-bold text-xl mb-2">Automatikus publikálás</h3>
-                        <p class="text-gray-600">Kész tartalmak időzítve Facebookra, LinkedInre és Instagramra – mind
+                        <p class="text-body">Kész tartalmak időzítve Facebookra, LinkedInre és Instagramra – mind
                             egy helyről kezelve.</p>
                     </div>
 
                     <!-- Feature 4: Marketing Naptár -->
-                    <div class="p-6 border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="bg-[#ffffff] p-6 border border-border rounded-[16px] shadow-card hover:shadow-card-hover transition-all hover:shadow-card hover:shadow-card-hover transition-all transition-shadow">
                         <div
                             class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
                             <span class="material-symbols-outlined">calendar_month</span>
                         </div>
                         <h3 class="font-bold text-xl mb-2">Marketing Naptár</h3>
-                        <p class="text-gray-600">Szezonális kampányok (pl. Karácsony) automatikus betervezése. Ne hagyd
+                        <p class="text-body">Szezonális kampányok (pl. Karácsony) automatikus betervezése. Ne hagyd
                             ki a bevételi csúcsokat.</p>
                     </div>
 
                     <!-- Feature 5: Hírlevél (Secondary) -->
                     <div
-                        class="p-6 border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow opacity-75 grayscale hover:grayscale-0 hover:opacity-100 bg-gray-50/50">
+                        class="p-6 border border-border rounded-[16px] shadow-card hover:shadow-card-hover transition-all hover:shadow-card hover:shadow-card-hover transition-all transition-shadow opacity-75 grayscale hover:grayscale-0 hover:opacity-100 bg-light/50">
                         <div
-                            class="mb-2 inline-block bg-gray-100 text-gray-600 text-[10px] uppercase font-bold px-2 py-0.5 rounded">
+                            class="mb-2 inline-block bg-light text-body text-[10px] uppercase font-bold px-2 py-0.5 rounded">
                             Egyéb modul</div>
-                        <h3 class="font-bold text-lg mb-2 text-gray-500">Hírlevélgenerálás</h3>
-                        <p class="text-sm text-gray-400">Automatikus hírlevelek akciókról. (Kiegészítő funkció)</p>
+                        <h3 class="font-bold text-lg mb-2 text-muted">Hírlevélgenerálás</h3>
+                        <p class="text-sm text-muted">Automatikus hírlevelek akciókról. (Kiegészítő funkció)</p>
                     </div>
 
                     <!-- Feature 6: Hirdetés (Secondary) -->
                     <div
-                        class="p-6 border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow opacity-75 grayscale hover:grayscale-0 hover:opacity-100 bg-gray-50/50">
+                        class="p-6 border border-border rounded-[16px] shadow-card hover:shadow-card-hover transition-all hover:shadow-card hover:shadow-card-hover transition-all transition-shadow opacity-75 grayscale hover:grayscale-0 hover:opacity-100 bg-light/50">
                         <div
-                            class="mb-2 inline-block bg-gray-100 text-gray-600 text-[10px] uppercase font-bold px-2 py-0.5 rounded">
+                            class="mb-2 inline-block bg-light text-body text-[10px] uppercase font-bold px-2 py-0.5 rounded">
                             Egyéb modul</div>
-                        <h3 class="font-bold text-lg mb-2 text-gray-500">Hirdetésgenerálás</h3>
-                        <p class="text-sm text-gray-400">Hirdetések generálása Meta platformokra. (Kiegészítő funkció)
+                        <h3 class="font-bold text-lg mb-2 text-muted">Hirdetésgenerálás</h3>
+                        <p class="text-sm text-muted">Hirdetések generálása Meta platformokra. (Kiegészítő funkció)
                         </p>
                     </div>
 
@@ -828,30 +908,30 @@
 
 
         <!-- 7. How it works -->
-        <section id="howitworks" class="py-20 bg-secondary-bg">
+        <section id="howitworks" class="bg-card  py-16 md:py-[120px] ">
             <div class="max-w-[1000px] mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-8">Hogyan lesz a webshopodnak<br> saját "marketing
+                <h2 class="text-3xl md:text-4xl font-bold mb-8">Hogyan lesz a webshopodnak<br> saját "marketing
                     osztálya"?</h2>
-                <p class="text-xl text-gray-600 mb-12">Garantáljuk, hogy márkád hangja és üzenete felismerhető marad,
+                <p class="text-xl text-body mb-12">Garantáljuk, hogy márkád hangja és üzenete felismerhető marad,
                     miközben az AI erejét használod.</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="bg-[#f8f9fb] p-6 rounded-[16px] shadow-card hover:shadow-card-hover transition-all">
                         <div class="text-4xl mb-4">🎭</div>
                         <h3 class="font-bold text-xl mb-3">Márkád digitális alteregója</h3>
-                        <p class="text-gray-600">Az AI megtanulja webshopod stílusát (pl. tegeződő, barátságos vagy
+                        <p class="text-body">Az AI megtanulja webshopod stílusát (pl. tegeződő, barátságos vagy
                             prémium, magázódó). Minden termékleírás és poszt egységes lesz.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="bg-[#f8f9fb] p-6 rounded-[16px] shadow-card hover:shadow-card-hover transition-all">
                         <div class="text-4xl mb-4">🚀</div>
                         <h3 class="font-bold text-xl mb-3">Konverzió fókusz</h3>
-                        <p class="text-gray-600">Nemcsak "szöveget" kapsz, hanem eladásra optimalizált copy-t. A
+                        <p class="text-body">Nemcsak "szöveget" kapsz, hanem eladásra optimalizált copy-t. A
                             rendszer ismeri a legjobb e-kereskedelmi hívószavakat és struktúrákat.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="bg-[#f8f9fb] p-6 rounded-[16px] shadow-card hover:shadow-card-hover transition-all">
                         <div class="text-4xl mb-4">🧠</div>
                         <h3 class="font-bold text-xl mb-3">Legmodernebb AI technológiák</h3>
-                        <p class="text-gray-600">A háttérben a legjobb, legminőségibb AI modelleket használjuk, hogy
+                        <p class="text-body">A háttérben a legjobb, legminőségibb AI modelleket használjuk, hogy
                             tökéletes legyen a végeredmény. Folyamatosan fejlesztjük a rendszert.</p>
                     </div>
                 </div>
@@ -859,169 +939,266 @@
         </section>
 
         <!-- 8. Automation -->
-        <section class="py-20 bg-white">
-            <div class="max-w-[1240px] mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <img src="assets/teljes-automatizalas.jpg" alt="Teljes automatizálás folyamata"
-                            class="w-full aspect-square rounded-xl shadow-lg object-cover">
-                    </div>
-                    <div>
-                        <h2 class="text-3xl font-extrabold mb-6">Teljesen automata módon is tud működni</h2>
-                        <p class="text-lg text-gray-600 mb-6">Pont olyan, mintha egy ügynökséget bíznál meg, csak sokkal
-                            olcsóbb és kiszámíthatóbb.</p>
-                        <p class="text-gray-600 mb-4 font-bold">Állíts be magadnak önműködő automatizmusokat és bízd rá
-                            a teljes folyamatot az AI-ra:</p>
+        <section class="bg-[#f8f9fb]  py-16 md:py-[120px] border-t border-border ">
+            <div class="max-w-[1200px] mx-auto px-4 md:px-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center">
 
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start gap-3">
-                                <span class="material-symbols-outlined text-primary mt-1">link</span>
-                                <span class="text-gray-700">Közvetlenül a webshopodból gyűjt termékadatokat</span>
+                    <!-- Text Content -->
+                    <div class="flex flex-col justify-center order-2 md:order-1">
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Forradalmi
+                            Újdonság 🔥</span>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-dark leading-tight">Saját <span
+                                class="text-primary">AI Influenszer</span> 0-24-ben.</h2>
+                        <p class="text-lg text-body mb-8 leading-relaxed">
+                            Nem kell modelleket fotóznod. Hozz létre egy brandazonos arcot, aki fáradhatatlanul gyártja
+                            a videós tartalmakat.
+                        </p>
+
+                        <ul class="space-y-5 mb-8">
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">face</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Állandó, brandazonos
+                                    ismert arc minden platformon.</span>
                             </li>
-                            <li class="flex items-start gap-3">
-                                <span class="material-symbols-outlined text-primary mt-1">movie_filter</span>
-                                <span class="text-gray-700">Szöveget ír, promóciós képet szerkeszt hozzá, logózza,
-                                    animációt csinál belőle.</span>
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">schedule</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Fáradhatatlan, non-stop
+                                    tartalomgyártás szünet nélkül.</span>
                             </li>
-                            <li class="flex items-start gap-3">
-                                <span class="material-symbols-outlined text-primary mt-1">schedule_send</span>
-                                <span class="text-gray-700">A végeredményt automatikusan beütemezi, majd publikálja is
-                                    (Facebook, Instagram, LinkedIn)</span>
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">trending_up</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1">Azonnali reakció a
+                                    trendekre, folyamatos releváns jelenlét.</span>
                             </li>
                         </ul>
-                        <a href="#hero"
-                            class="inline-flex items-center justify-center rounded-lg h-12 px-8 bg-primary text-white font-bold shadow-md hover:bg-primary-text transition-all">
-                            Automatizálni akarom a webshopom!
-                        </a>
+
+                        <div>
+                            <a href="#hero"
+                                class="inline-flex items-center justify-center rounded-lg h-14 px-8 cta-primary text-lg">
+                                Érdekel a funkció!
+                            </a>
+                        </div>
                     </div>
+
+                    <!-- Video (Right on Desktop) -->
+                    <div class="relative w-full max-w-[500px] mx-auto order-1 md:order-2">
+                        <div
+                            class="relative w-full aspect-square rounded-[16px] overflow-hidden shadow-card hover:shadow-card-hover transition-all border-4 border-white  bg-light group">
+                            <video class="w-full h-full object-cover" controls autoplay loop muted playsinline>
+                                <source src="assets/video-demo3.mp4" type="video/mp4">
+                                A böngésződ nem támogatja a videó lejátszást.
+                            </video>
+                            <!-- Play Button Overlay -->
+                            <div
+                                class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                <span
+                                    class="material-symbols-outlined text-white text-7xl drop-shadow-card hover:shadow-card-hover transition-all">play_circle</span>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge -->
+                        <div
+                            class="absolute -bottom-6 -left-6 bg-card  p-4 rounded-[16px] shadow-card hover:shadow-card-hover transition-all flex items-center gap-3 animate-bounce-slow hidden md:flex border border-border ">
+                            <div
+                                class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-success">
+                                <span class="material-symbols-outlined text-2xl">verified</span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-muted font-bold uppercase tracking-wide">Elérhetőség</p>
+                                <p class="text-xl font-bold text-dark ">100%</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
         <!-- 9. Visual Marketing Calendar -->
-        <section id="calendar" class="py-20 bg-secondary-bg">
-            <div class="max-w-[1240px] mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 md:order-1">
-                        <h2 class="text-3xl font-extrabold mb-6">Vizuális tartalomnaptár</h2>
-                        <p class="text-lg text-gray-600 mb-6">Átlátható felületen láthatod, hogy mikor, milyen poszt
-                            kerül publikálásra. Nem kell többé excel táblázatokkal bajlódnod.</p>
+        <section id="calendar" class="bg-card  py-16 md:py-[120px] ">
+            <div class="max-w-[1200px] mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="flex flex-col justify-center order-2 md:order-2">
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Stratégiai
+                            Tervezés 📆</span>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-dark leading-tight">Vizuális tartalomnaptár
+                        </h2>
+                        <p class="text-lg text-body mb-8 leading-relaxed">
+                            Átlátható felületen láthatod, hogy mikor, milyen poszt kerül publikálásra. Nem kell többé
+                            excel táblázatokkal bajlódnod.
+                        </p>
 
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start gap-3">
-                                <span class="material-symbols-outlined text-accent mt-1">drag_indicator</span>
-                                <span class="text-gray-700"><strong>Drag & Drop időzítés:</strong> Csak húzd át a
-                                    posztot a megfelelő napra, és a rendszer automatikusan átütemezi.</span>
+                        <ul class="space-y-5 mb-8">
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span
+                                        class="material-symbols-outlined text-primary text-[20px]">drag_indicator</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1"><strong>Drag & Drop
+                                        időzítés:</strong> Húzd át a posztot a napra, magától átütemezi.</span>
                             </li>
-                            <li class="flex items-start gap-3">
-                                <span class="material-symbols-outlined text-accent mt-1">page_control</span>
-                                <span class="text-gray-700"><strong>Egy kattintásos jóváhagyás:</strong> Ha tetszik a
-                                    terv, egy gombnyomással élesítheted az egész hetet.</span>
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">page_control</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1"><strong>Egy kattintásos
+                                        jóváhagyás:</strong> Egyetlen gombnyomással élesítheted az egész hetet.</span>
                             </li>
-                            <li class="flex items-start gap-3">
-                                <span class="material-symbols-outlined text-accent mt-1">calendar_view_month</span>
-                                <span class="text-gray-700"><strong>Havi és heti nézet:</strong> Tervezz előre, és lásd
-                                    át a kampányaidat egyben.</span>
+                            <li class="flex items-start gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span
+                                        class="material-symbols-outlined text-primary text-[20px]">calendar_view_month</span>
+                                </div>
+                                <span class="text-body font-medium text-lg leading-snug pt-1"><strong>Havi és heti
+                                        nézet:</strong> Tervezz előre, és lásd át a kampányaidat egyben.</span>
                             </li>
                         </ul>
-                        <a href="#hero"
-                            class="inline-flex items-center justify-center rounded-lg h-12 px-8 bg-accent text-accent-foreground font-bold shadow-md hover:brightness-95 transition-all">
-                            Kipróbálom a naptárat!
-                        </a>
+                        <div>
+                            <a href="#hero"
+                                class="inline-flex items-center justify-center rounded-lg h-14 px-8 cta-primary text-lg">
+                                Kipróbálom a naptárat!
+                            </a>
+                        </div>
                     </div>
-                    <div class="order-1 md:order-2">
+                    <div class=" order-1 md:order-1">
                         <img src="assets/tartalomnaptar.jpg" alt="Vizuális tartalomnaptár"
-                            class="w-full h-auto rounded-xl shadow-lg object-contain">
+                            class="w-full h-auto rounded-[16px] shadow-card hover:shadow-card-hover transition-all object-contain">
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 10. Pricing -->
-        <section id="pricing" class="py-20 bg-white">
-            <div class="max-w-[1240px] mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl font-extrabold mb-4">Platform árazása</h2>
-                    <p class="text-gray-600">Csatlakozz hozzánk az elsők között és zsebeld be az extra kedvezményeket.
+        <section id="pricing" class="bg-[#f8f9fb]  py-16 md:py-[120px] ">
+            <div class="max-w-[1200px] mx-auto px-4">
+                <div class="text-center mb-10 md:mb-16">
+                    <h2 class="text-3xl font-bold mb-4">Platform árazása</h2>
+                    <p class="text-body">Csatlakozz hozzánk az elsők között és zsebeld be az extra kedvezményeket.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[900px] mx-auto">
                     <!-- Standard -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
-                        <h3 class="text-xl font-bold mb-4">Standard előfizetés</h3>
+                    <div
+                        class="bg-card p-8 rounded-[16px] shadow-card hover:shadow-card-hover transition-all border border-border">
+                        <h3 class="text-xl font-bold mb-4 text-dark">Standard előfizetés</h3>
                         <div class="flex items-baseline gap-1 mb-6">
-                            <span class="text-4xl font-extrabold">19.990</span>
-                            <span class="text-xl font-bold">Ft</span>
-                            <span class="text-gray-500 text-sm">+ÁFA / hó</span>
+                            <span class="text-4xl font-bold text-dark">19.990</span>
+                            <span class="text-xl font-bold text-dark">Ft</span>
+                            <span class="text-muted text-sm">+ÁFA / hó</span>
                         </div>
+                        <p class="text-body font-medium text-sm mb-6 pb-6 border-b border-border">A teljes automata
+                            marketing csomag</p>
                         <ul class="space-y-4 mb-8">
                             <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-green-500">check</span>
-                                <span>Automata termékleírás generálás</span>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-success/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-success text-[14px]">check</span>
+                                </div>
+                                <span class="text-body font-medium">Automata termékleírás generálás</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-green-500">check</span>
-                                <span>Automatikus social media kreatívok</span>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-success/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-success text-[14px]">check</span>
+                                </div>
+                                <span class="text-body font-medium">Automatikus social media kreatívok</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-green-500">check</span>
-                                <span>Teljesen automatizált publikálás</span>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-success/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-success text-[14px]">check</span>
+                                </div>
+                                <span class="text-body font-medium">Teljesen automatizált publikálás</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-green-500">check</span>
-                                <span>Márkahű stílus és hangnem</span>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-success/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-success text-[14px]">check</span>
+                                </div>
+                                <span class="text-body font-medium">Márkahű stílus és hangnem</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-green-500">check</span>
-                                <span>Marketing naptár és időzítés</span>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-success/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-success text-[14px]">check</span>
+                                </div>
+                                <span class="text-body font-medium">Marketing naptár és időzítés</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-green-500">check</span>
-                                <span>Folyamatos fejlesztés és support</span>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-success/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-success text-[14px]">check</span>
+                                </div>
+                                <span class="text-body font-medium">Folyamatos fejlesztés és support</span>
                             </li>
                         </ul>
                         <a href="#hero"
-                            class="flex justify-center items-center w-full rounded-lg h-12 border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all">
+                            class="flex justify-center items-center w-full rounded-lg h-12 cta-secondary w-full text-center">
                             Kiválasztom
                         </a>
                     </div>
 
                     <!-- Discounted -->
                     <div
-                        class="bg-primary text-white p-8 rounded-2xl shadow-xl relative overflow-hidden transform md:-translate-y-4">
+                        class="bg-card p-8 rounded-[16px] shadow-[0_8px_30px_rgb(108,92,231,0.12)] border-2 border-primary relative transform md:-translate-y-4">
                         <div
-                            class="absolute top-0 right-0 bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wide">
+                            class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-4 py-1.5 rounded-bl-[16px] uppercase tracking-wide">
                             Akció
                         </div>
-                        <h3 class="text-xl font-bold mb-4">Induló kedvezmény</h3>
+                        <h3 class="text-xl font-bold mb-4 text-dark">Induló kedvezmény</h3>
                         <div class="flex items-baseline gap-1 mb-6">
-                            <span class="text-4xl font-extrabold">9.990</span>
-                            <span class="text-xl font-bold">Ft</span>
-                            <span class="text-white/80 text-sm">+ÁFA</span>
+                            <span class="text-4xl font-bold text-primary">9.990</span>
+                            <span class="text-xl font-bold text-dark">Ft</span>
+                            <span class="text-muted text-sm">+ÁFA</span>
                         </div>
-                        <p class="text-white/80 text-sm mb-6">Csak 9.990 Ft / hó – 1 hónapon át</p>
+                        <p class="text-body font-medium text-sm mb-6 pb-6 border-b border-border">Csak 9.990 Ft / hó – 1
+                            hónapon át</p>
 
                         <ul class="space-y-4 mb-8">
                             <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-accent">check</span>
-                                <span>Minden funkció, mint a standard csomagban</span>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[14px]">check</span>
+                                </div>
+                                <span class="text-body font-medium">Minden funkció, mint a standard csomagban</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-accent">check</span>
-                                <span>Extra visszajelzési lehetőség: segíts formálni a terméket</span>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[14px]">check</span>
+                                </div>
+                                <span class="text-body font-medium">Extra visszajelzés szorosabb kapcsolattal</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-accent">check</span>
-                                <span>Előny az új funkciók kipróbálásánál</span>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[14px]">check</span>
+                                </div>
+                                <span class="text-body font-medium">Előny az új funkcióknál</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-accent">check</span>
-                                <span>Egyedi igények beépítésének lehetősége</span>
+                                <div
+                                    class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[14px]">check</span>
+                                </div>
+                                <span class="text-body font-medium">Egyedi igények gyors beépítése</span>
                             </li>
                         </ul>
                         <a href="#hero"
-                            class="flex justify-center items-center w-full rounded-lg h-12 bg-white text-primary font-bold hover:bg-gray-100 transition-all shadow-md">
+                            class="flex justify-center items-center w-full rounded-lg h-12 cta-primary w-full text-center">
                             Kérem a kedvezményt
                         </a>
                     </div>
@@ -1030,12 +1207,14 @@
         </section>
 
         <!-- Footer -->
-        <footer id="contact" class="py-12 bg-gray-900 text-gray-400 text-sm border-t border-gray-800">
-            <div class="max-w-[1240px] mx-auto px-4">
+        <footer id="contact" class="py-12 bg-dark text-muted text-sm border-t border-dark/90">
+            <div class="max-w-[1200px] mx-auto px-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                     <div>
-                        <img src="assets/logo.png" alt="Logo" class="h-8 mb-4 opacity-80 grayscale invert">
-                        <p>Egy rendszer, ami a webshopod nevében készít marketing tartalmakat futószalagon.</p>
+                        <div class="bg-white p-3 rounded-xl inline-block mb-4"><img src="assets/logo.webp" alt="Logo"
+                                class="h-8 md:h-10"></div>
+                        <p class="text-muted">Egy rendszer, ami a webshopod nevében készít marketing tartalmakat
+                            futószalagon.</p>
                     </div>
                     <div>
                         <h4 class="text-white font-bold mb-4">Információk</h4>
@@ -1047,9 +1226,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p></p>
-                    <p>Copyright © digitallwork.hu | 2026</p>
+                <div class="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p>Copyright © contentninja.hu | 2026</p>
                 </div>
             </div>
         </footer>
@@ -1095,7 +1273,7 @@
                 // --- Silent notification: send rejection data via email only ---
                 try {
                     // Send email via FormSubmit (silent, fire-and-forget)
-                    fetch('https://formsubmit.co/ajax/ertesites@digitallwork.hu', {
+                    fetch('https://formsubmit.co/ajax/ertesites@contentninja.hu', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -1210,7 +1388,7 @@
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(webhookPayload)
                         }),
-                        fetch('https://formsubmit.co/ajax/ertesites@digitallwork.hu', {
+                        fetch('https://formsubmit.co/ajax/ertesites@contentninja.hu', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -1245,7 +1423,7 @@
     <script>
         // Early Bird Dynamic Color Logic
         (function () {
-            const current = 25;
+            const current = 26;
             const max = 40;
             const ratio = current / max; // 0.625
 
@@ -1271,7 +1449,7 @@
             const startColor = getBarColor(Math.max(0, ratio - 0.15));
             const endColor = getBarColor(ratio);
 
-            const bar = document.getElementById('earlyBirdBar');
+            const bar = document.getElementById('earlyBirdBarOldDisabled');
             if (bar) {
                 bar.style.width = (ratio * 100) + '%';
                 bar.style.background = `linear-gradient(90deg, ${startColor}, ${endColor})`;
