@@ -6,58 +6,15 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Monday.com Rendszerépítés - Digitallwork.hu</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700;900&amp;display=swap"
         rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#8420cf",
-                        "primary-text": "#8421D1",
-                        "accent": "#70E2D9",
-                        "accent-foreground": "#151117",
-                        "background-light": "#ffffff",
-                        "background-dark": "#1a1a1a",
-                        "secondary-bg": "#f5f5f5",
-                    },
-                    fontFamily: {
-                        "display": ["Manrope", "sans-serif"],
-                        "body": ["Manrope", "sans-serif"],
-                    },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
-                },
-            },
-        }
-    </script>
-    <style>
-        .form-step {
-            display: none;
-            animation: fadeIn 0.4s ease-out;
-        }
-
-        .form-step.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/styles.css" />
 </head>
 
 <body
@@ -351,7 +308,8 @@
                 <!-- Wide Image Placeholder -->
                 <div
                     class="w-full max-w-[800px] mx-auto mb-12 rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
-                    <img src="assets/munka_kozben.png" alt="Munka közben" class="w-full h-auto">
+                    <img src="assets/munka_kozben.webp" alt="Munka közben" class="w-full h-auto" loading="lazy"
+                        width="1000" height="563">
                 </div>
 
                 <h2 class="text-3xl md:text-5xl font-extrabold mb-6">
@@ -359,7 +317,8 @@
                 </h2>
                 <div
                     class="inline-flex items-center gap-3 px-5 py-3 mb-8 rounded-full bg-secondary-bg border border-gray-100">
-                    <img src="assets/Monday-partner-logo.png" alt="monday.com Certified Partner" class="h-10 w-auto">
+                    <img src="assets/Monday-partner-logo.png" alt="monday.com Certified Partner" class="h-10 w-auto"
+                        loading="lazy">
                     <span class="text-sm font-bold text-gray-600">Hivatalos Monday.com partnerek vagyunk</span>
                 </div>
                 <p class="text-xl leading-relaxed text-gray-600 mb-10">
@@ -419,7 +378,8 @@
             <div class="max-w-[1000px] mx-auto px-4 flex flex-col md:flex-row items-center gap-10">
                 <div
                     class="w-48 h-48 md:w-64 md:h-64 flex-shrink-0 bg-gray-100 rounded-full overflow-hidden border-4 border-white shadow-xl relative">
-                    <img src="assets/hero_image.jpg" alt="Markó Tamás" class="w-full h-full object-cover">
+                    <img src="assets/hero_image.jpg" alt="Markó Tamás" class="w-full h-full object-cover"
+                        loading="lazy">
                 </div>
                 <div>
                     <h2 class="text-3xl font-extrabold mb-2">Markó Tamás</h2>
@@ -434,7 +394,8 @@
                         <span>✓ AI & No-Code</span>
                     </div>
                     <div class="flex items-center gap-3 mb-6">
-                        <img src="assets/Monday-partner-logo.png" alt="monday.com Certified Partner" class="h-12 w-auto">
+                        <img src="assets/Monday-partner-logo.png" alt="monday.com Certified Partner" class="h-12 w-auto"
+                            loading="lazy">
                         <span class="text-sm font-bold text-gray-600">Hivatalos Monday.com partnerek vagyunk</span>
                     </div>
                     <a href="#hero"
@@ -988,7 +949,7 @@
         <footer class="py-10 pb-28 md:pb-10 bg-gray-900 text-center text-sm text-gray-400">
             <div class="flex flex-col items-center gap-3 mb-6">
                 <img src="assets/Monday-partner-logo.png" alt="monday.com Certified Partner"
-                    class="h-12 w-auto bg-white rounded-lg px-3 py-2">
+                    class="h-12 w-auto bg-white rounded-lg px-3 py-2" loading="lazy">
                 <span class="text-gray-300 font-bold">Hivatalos Monday.com partnerek vagyunk</span>
             </div>
             <p>&copy; 2026 Digitallwork.hu Kft. Minden jog fenntartva.</p>
