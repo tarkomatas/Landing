@@ -1,0 +1,17 @@
+{
+  "name": "digitallwork-landing",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/tailwind.src.css -o ./assets/styles.css --minify",
+    "watch:css": "tailwindcss -i ./assets/tailwind.src.css -o ./assets/styles.css --watch",
+    "build:img": "node scripts/optimize-images.js",
+    "build": "npm run build:css && npm run build:img"
+  },
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.7",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^3.4.0"
+  }
+}
