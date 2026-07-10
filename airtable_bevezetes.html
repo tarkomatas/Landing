@@ -1014,6 +1014,7 @@
 
                 // Pre-qualification gate: reject before asking for contact details
                 if (isDisqualified()) {
+                    sendWebhook('hard_reject');
                     showDisqualifyScreen();
                     return;
                 }
@@ -1052,6 +1053,39 @@
                 disqualifyScreen.classList.remove('hidden');
             }
 
+            const WEBHOOK_URL = 'https://hook.eu1.make.com/xbo9fcd67yg1k7jway7ifcako15i1ykm';
+            let webhookSent = false;
+
+            // Send a notification to Make.com for both qualified (success) and disqualified (hard_reject) leads.
+            // status: 'success' | 'hard_reject'
+            async function sendWebhook(status) {
+                // Guard against duplicate sends (e.g. repeated clicks)
+                if (webhookSent) return;
+                webhookSent = true;
+
+                const formData = new FormData(leadForm);
+                const webhookData = {};
+                formData.forEach((value, key) => webhookData[key] = value);
+
+                // Status of the lead so the receiving end can branch on it
+                webhookData['status'] = status; // 'success' or 'hard_reject'
+                webhookData['source_url'] = window.location.href;
+                webhookData['subject'] = status === 'hard_reject'
+                    ? `⛔ Airtable hard reject jelentkezés${webhookData['name'] ? ': ' + webhookData['name'] : ''}`
+                    : `🚀 Airtable konzultáció jelentkezés: ${webhookData['name']}`;
+
+                try {
+                    await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(webhookData)
+                    });
+                    console.log(`Webhook sent successfully (status: ${status})`);
+                } catch (error) {
+                    console.error('Webhook error:', error);
+                }
+            }
+
             const FORM_SUBMITTED_KEY = 'airtable_bevezetes_form_submitted';
             const submitBtnInit = document.getElementById('submitBtn');
 
@@ -1078,10 +1112,11 @@
                     return;
                 }
 
-                // Pre-qualification: only evaluated after the user finalizes and submits
+                // Pre-qualification: defensive re-check at submit time
                 if (isDisqualified()) {
+                    await sendWebhook('hard_reject'); // notify even on hard reject
                     showDisqualifyScreen();
-                    return; // Disqualified lead, do not submit
+                    return; // Disqualified lead, do not redirect to thank-you page
                 }
 
                 const btn = document.getElementById('submitBtn');
@@ -1091,26 +1126,9 @@
                 // Mark as submitted IMMEDIATELY to prevent race conditions
                 sessionStorage.setItem(FORM_SUBMITTED_KEY, 'true');
 
-                const formData = new FormData(this);
-
-                // Collect clean form data
-                const webhookData = {};
-                formData.forEach((value, key) => webhookData[key] = value);
-
-                // Add source URL and subject
-                webhookData['source_url'] = window.location.href;
-                webhookData['subject'] = `🚀 Airtable konzultáció jelentkezés: ${webhookData['name']}`;
-
-                // Fire the Make.com webhook only, then redirect
+                // Fire the Make.com webhook (success), then redirect
                 try {
-                    await fetch('https://hook.eu1.make.com/xbo9fcd67yg1k7jway7ifcako15i1ykm', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(webhookData)
-                    });
-                    console.log('Webhook sent successfully');
-                } catch (error) {
-                    console.error('Webhook error:', error);
+                    await sendWebhook('success');
                 } finally {
                     // Always redirect after the attempt (prevents re-submission)
                     window.location.href = "koszi.html?lead=1";
