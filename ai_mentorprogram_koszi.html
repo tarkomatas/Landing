@@ -80,8 +80,7 @@
         }
 
         .mono,
-        .eyebrow,
-        .btn {
+        .eyebrow {
             font-family: "IBM Plex Mono", ui-monospace, monospace;
         }
 
@@ -123,13 +122,19 @@
             mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
         }
 
-        /* ---------- fejléc ---------- */
+        /* ---------- fejléc — azonos a landing oldaléval ---------- */
         .mp-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
             background: rgba(237, 230, 216, 0.88);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--rule);
         }
 
+        /* A landingen a fejléc a széles rácshoz igazodik, nem a szűk tartalomhoz */
         .mp-header .wrap {
+            width: min(1180px, 100% - 44px);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -141,6 +146,12 @@
             height: 34px;
             width: auto;
             object-fit: contain;
+        }
+
+        @media (max-width: 900px) {
+            .mp-header .hide-sm {
+                display: none;
+            }
         }
 
         /* ---------- visszaigazoló kártya ---------- */
@@ -193,53 +204,6 @@
             font-size: 16.5px;
             line-height: 1.55;
             margin-top: 6px;
-        }
-
-        /* ---------- kiemelt megjegyzés ---------- */
-        .note {
-            margin-top: clamp(28px, 3.5vw, 38px);
-            padding-left: 22px;
-            border-left: 3px solid var(--purple);
-            font-size: 16.5px;
-            line-height: 1.6;
-            color: var(--ink-soft);
-        }
-
-        .note strong {
-            color: var(--ink);
-        }
-
-        /* ---------- gomb ---------- */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 17px 26px;
-            border: 2px solid var(--ink);
-            background: var(--purple);
-            color: #fff;
-            box-shadow: var(--shadow-hard-sm);
-            transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translate(3px, 3px);
-            box-shadow: 1px 1px 0 var(--ink);
-            background: var(--purple-deep);
-        }
-
-        .mp .btn,
-        .mp .btn:link,
-        .mp .btn:visited,
-        .mp .btn:hover,
-        .mp .btn * {
-            color: #fff;
         }
 
         /* ---------- lábléc ---------- */
@@ -318,7 +282,7 @@
     <header class="mp-header">
         <div class="wrap">
             <a href="ai_mentorprogram.html"><img src="assets/logo.png" alt="Digitallwork"></a>
-            <span class="eyebrow">AI rendszerépítő mentorprogram</span>
+            <span class="eyebrow hide-sm">AI rendszerépítő mentorprogram</span>
         </div>
     </header>
 
@@ -368,23 +332,6 @@
                     </div>
                 </div>
 
-                <div class="note">
-                    <p>
-                        <strong>Egy kérés:</strong> tedd fel a <strong>+36</strong>-os számomat az ismerősök közé,
-                        vagy legalább ne dobd el az ismeretlen hívást a következő pár napban. A leggyakoribb ok,
-                        amiért egy jelentkezés elhal, az az, hogy nem veszik fel.
-                    </p>
-                </div>
-
-                <div style="margin-top:32px; display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
-                    <a href="ai_mentorprogram.html" class="btn">
-                        Vissza az oldalra
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                            <path d="M2 8h11M9 3.5L13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8" />
-                        </svg>
-                    </a>
-                    <span class="mono muted" style="font-size:13px;">Addig is: nézd át a GYIK-ot.</span>
-                </div>
             </div>
 
         </div>
