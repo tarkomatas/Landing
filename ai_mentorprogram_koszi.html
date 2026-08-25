@@ -132,7 +132,9 @@
             border-bottom: 1px solid var(--rule);
         }
 
-        /* A landingen a fejléc a széles rácshoz igazodik, nem a szűk tartalomhoz */
+        /* A landingen a fejléc a széles rácshoz igazodik, nem a szűk tartalomhoz.
+           A min-height a landing .btn--sm gombjának magasságát pótolja: ott az húzza
+           50px-re a sávot, itt nincs gomb, így kézzel tartjuk azonos magasságon. */
         .mp-header .wrap {
             width: min(1180px, 100% - 44px);
             display: flex;
@@ -140,6 +142,7 @@
             justify-content: space-between;
             gap: 20px;
             padding: 14px 0;
+            min-height: 50px;
         }
 
         .mp-header img {
